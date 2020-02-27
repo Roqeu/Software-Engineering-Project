@@ -178,7 +178,7 @@ public class Model {
 	 * Set approval 
 	 * @param course
 	 */
-	public void setRequestApproval(Course course, boolean approval) {
+	public void giveRequestApproval(Course course, boolean approval) {
 		course.setApproved(approval);
 	}
 
