@@ -1,11 +1,15 @@
 package MainLogic;
 
+import java.util.Scanner;
+
 public class Controller {
 
 	// Stores model
 	private Model model;
 	// Stores view
 	private View view;
+	// Initialises Scanner to listen for input
+	Scanner userInput = new Scanner(System.in);
 	
 	/**
 	 * Constructor
@@ -23,6 +27,21 @@ public class Controller {
 	 */
 	public int selectUser() {
 		
+		// Stores user input
+		int selected = userInput.nextInt();
+				
+		// If user does not select a valid input
+		// ask for a valid input and store input
+		while(selected > 0 && selected < 4) {
+			
+			// Warns user of invalid input
+			view.incorrectInput();
+			
+			// Stores new input
+			selected = userInput.nextInt();
+		}
+				
+		return selected;
 	}
 	
 	/**
