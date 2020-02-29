@@ -74,18 +74,13 @@ public class Controller {
 			selected = userInput.nextInt();
 		}
 		
-		// If user has not selected return to main menu assign requirements
-		if(selected != 0) {
-			
-			assignRequirements();
-			
-			// If user has selected to return to main menu, return to main menu
-		} else if(selected == 0) {
+		// If user has selected to return to user selection return false
+		if(selected == 0) {
 			
 			return false;
 		}
 		
-		return true;
+		return assignRequirements(courseList.get(selected - 1));
 	}
 	
 	/**
@@ -119,21 +114,21 @@ public class Controller {
 		
 		switch(selected) {
 		
-			// If 0 selected return to user selection
-			case 0:
-				exit = true;
-			// If 1 selected display staff
-			case 1:
-				view.displayStaff(model.getStaffList());
-			// If 2 selected enter course assignment menu
-			case 2:
-				exit = fillRequirements(model.findRequirements());
-			// If 3 selected enter add staff menu
-			case 3:
-				exit = createNewStaffMember();
-			// If 4 selected show untrained staff
-			case 4:
-				view.displayUntrainedStaff(model.findUntrainedStaff());
+		// If 0 selected return to user selection
+		case 0:
+			exit = true;
+		// If 1 selected display staff
+		case 1:
+			view.displayStaff(model.getStaffList());
+		// If 2 selected enter course assignment menu
+		case 2:
+			exit = fillRequirements(model.findRequirements());
+		// If 3 selected enter add staff menu
+		case 3:
+			exit = createNewStaffMember();
+		// If 4 selected show untrained staff
+		case 4:
+			view.displayUntrainedStaff(model.findUntrainedStaff());
 		}
 		
 		return exit;
@@ -152,8 +147,24 @@ public class Controller {
 	 * Allows course director to assign requirements to a given course
 	 * @return boolean
 	 */
-	private static boolean assignRequirements() {
+	private static boolean assignRequirements(Course course) {
 		
+		// Displays assign requirements message
+		view.askRequirement());
+		
+		// Stores user input
+		int selected = userInput.nextInt();
+		
+		// If user choses to exit, return false
+		if(selected == 0) {
+			
+			return false;
+		}
+		
+		// Assigns requirement
+		model.assignRequirement(course, selected);
+		
+		return true;
 	}
 	
 	/**
@@ -184,21 +195,61 @@ public class Controller {
 		// Stores user selection
 		int selected = userInput.nextInt();
 		
-		// If user wants to return to admin options, return
-		if(selected == 0) {
-			
-			return false;
-		}
-		
 		// Loops until valid input is selected
 		while(selected > 0 && selected < requirements.size()) {
-			
+					
 			// Displays wrong input message
 			view.incorrectInput();
 			// Displays courses
 			view.displayCourses(requirements);
 			// Stores user input
 			selected = userInput.nextInt();
+		}
+				
+		// If user wants to return to admin options, return
+		if(selected == 0) {
+			
+			return false;
+		}
+		
+		// Stores course selection
+		Course course = requirements.get(selected - 1);
+		
+		return courseOptions(course);
+	}
+	
+	/**
+	 * Displays the course requirements and add/remove staff options
+	 * @param Course
+	 * @return boolean
+	 */
+	private static boolean courseOptions(Course course) {
+		
+		// Displays course options
+		view.courseOptions(course);
+		
+		// Stores user input
+		int selected = userInput.nextInt();
+		
+		// Loop until user selects valid input
+		while(selected >= 0 && selected <= 2) {
+			
+			// Displays wrong input message
+			view.incorrectInput();
+			// Displays courses
+			view.displayRequirements(course);
+			// Stores user input
+			selected = userInput.nextInt();			
+		}
+		
+		switch (selected) {
+		
+		case 0:
+			return false;
+		case 1:
+			return assignStaff(course);
+		case 2:
+			return removeStaff(course);
 		}
 	}
 	
@@ -217,21 +268,21 @@ public class Controller {
 		// Stores user input
 		int selected = userInput.nextInt();
 		
-		// If user selects to exit return false
-		if(selected == 0) {
-			
-			return false;
-		}
-		
 		// Loops until valid input is selected
-		while(selected > 0 && selected < availableStaff.size()) {
+		while(selected >= 0 && selected <= availableStaff.size()) {
 				
 			// Displays wrong input message
 			view.incorrectInput();
 			// Displays courses
-			view.displayStaff(availableStaff);
+			view.displayStaffList(availableStaff);
 			// Stores user input
 			selected = userInput.nextInt();
+		}
+		
+		// If user selects to exit return false
+		if(selected == 0) {
+			
+			return false;
 		}
 		
 		// Adds selected staff member to course
@@ -247,7 +298,35 @@ public class Controller {
 	 */
 	private static boolean removeStaff(Course course) {
 		
+		// Stores staff associated with this course
+		ArrayList<Staff> staff = model.getAssignedStaff(course);
 		
+		// Displays staff
+		view.displayStaffList(staff);
+		
+		// Stores user input
+		int selected = userInput.nextInt();
+		
+		while(selected >= 0 && selected <= staff.size()) {
+			
+			// Displays wrong input message
+			view.incorrectInput();
+			// Displays courses
+			view.displayStaff(staff);
+			// Stores user input
+			selected = userInput.nextInt();
+		}
+		
+		// If user selects to exit return false
+		if(selected == 0) {
+			
+			return false;
+		}
+		
+		// Remove selected staff from selected course
+		model.removeStaff(course, staff.get(selected - 1));
+		
+		return true;
 	}
 	
 	/**
