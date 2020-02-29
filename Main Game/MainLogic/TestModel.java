@@ -29,7 +29,7 @@ public class TestModel {
 			System.out.println(course);
 		}
 		
-		System.out.println("Adding staff.\n");
+		System.out.println("--- Adding staff ---\n");
 		
 		/*
 		 * Find a staff members to add

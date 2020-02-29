@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * 	public Staff find(int ID) 
  * 	public void createStaff(String name, int hours)
  * 	public ArrayList<Staff> findAvailableStaff()
+ * 	public ArrayList<Staff> findUnavailableStaff()
  * 	public ArrayList<Staff> findUntrainedStaff()
  * 	public ArrayList<Staff> findTrainedStaff()
  * 	public ArrayList<Staff> getStaffList()
@@ -36,6 +37,7 @@ public class ListOfStaff {
 	 * @return staff object associated with ID, null if invalid IDS
 	 */
 	public Staff find(int ID) {
+		
 		for(Staff staff : staffList) {
 			
 			if(staff.getID() == ID) {
@@ -81,6 +83,8 @@ public class ListOfStaff {
 	 */
 	public ArrayList<Staff> findAvailableStaff() {
 		
+		ArrayList<Staff> availableStaff = new ArrayList<Staff>();
+		
 		for(Staff staff : staffList) {
 			
 			/*
@@ -89,11 +93,34 @@ public class ListOfStaff {
 			 * !!!!!!
 			 */
 			if(true) {
-				staffList.add(staff);
+				availableStaff.add(staff);
 			}
 			
 		}
-		return null;
+		return availableStaff;
+	}
+	
+	/**
+	 * Method to find unavailable staff
+	 * @return ArrayList of unavailable staff
+	 */
+	public ArrayList<Staff> findUnavailableStaff() {
+		
+		ArrayList<Staff> unavailableStaff = new ArrayList<Staff>();
+		
+		for(Staff staff : staffList) {
+			
+			/*
+			 * !!!!!!
+			 * Add condition to check for unavailable staff
+			 * !!!!!!
+			 */
+			if(true) {
+				unavailableStaff.add(staff);
+			}
+			
+		}
+		return unavailableStaff;
 	}
 	
 	/**
@@ -102,26 +129,7 @@ public class ListOfStaff {
 	 */
 	public ArrayList<Staff> findUntrainedStaff() {
 		
-		for(Staff staff : staffList) {
-			
-			/*
-			 * !!!!!!
-			 * Add condition to check for untrained staff
-			 * !!!!!!
-			 */
-			
-			if(true) {
-				staffList.add(staff);
-			}
-		}
-		return null;
-	}
-	
-	/**
-	 * Method to find trained staff
-	 * @return ArrayList of trained staff
-	 */
-	public ArrayList<Staff> findTrainedStaff() {
+		ArrayList<Staff> untrainedStaff = new ArrayList<Staff>();
 		
 		for(Staff staff : staffList) {
 			
@@ -132,10 +140,33 @@ public class ListOfStaff {
 			 */
 			
 			if(true) {
-				staffList.add(staff);
+				untrainedStaff.add(staff);
 			}
 		}
-		return null;
+		return untrainedStaff;
+	}
+	
+	/**
+	 * Method to find trained staff
+	 * @return ArrayList of trained staff
+	 */
+	public ArrayList<Staff> findTrainedStaff() {
+		
+		ArrayList<Staff> trainedStaff = new ArrayList<Staff>();
+		
+		for(Staff staff : staffList) {
+			
+			/*
+			 * !!!!!!
+			 * Add condition to check for untrained staff
+			 * !!!!!!
+			 */
+			
+			if(true) {
+				trainedStaff.add(staff);
+			}
+		}
+		return trainedStaff;
 	}
 	
 	/**

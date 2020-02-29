@@ -9,7 +9,11 @@ import java.util.ArrayList;
  * Public methods:
  *  public Course find(int ID)
  *  public void createCourse(String name)
+ *  public ArrayList<Course> findUnapprovedCourses()
  *  public void addStaffToCourse(Course course, Staff staff)
+ *  public void removeStaffFromCourse(Course course, Staff staff)
+ *  public void assignCourseRequirements(Course course, int req)
+ *  public void giveRequestApproval(Course course, boolean approval)
  *  public void train(Course course, Staff staff)
  *  public ArrayList<Course> getCourseList()
  */
@@ -72,6 +76,23 @@ public class ListOfCourses {
 	}
 	
 	/**
+	 * Method to return ArrayList of unapproved courses
+	 * @return ArrayList of unapproved courses
+	 */
+	public ArrayList<Course> findUnapprovedCourses(){
+		
+		ArrayList<Course> unapprovedCourses = new ArrayList<Course>();
+		
+		for(Course course : this.courseList) {
+			if(true) {
+				unapprovedCourses.add(course);
+			}
+		}
+		
+		return unapprovedCourses;
+	}
+	
+	/**
 	 * Method to add staff to course
 	 * @param course
 	 * @param staff
@@ -80,6 +101,43 @@ public class ListOfCourses {
 		
 		course.addStaff(staff);
 		
+	}
+	
+	/**
+	 * Method to remove staff member from course
+	 * @param course
+	 * @param staff
+	 */
+	public void removeStaffFromCourse(Course course, Staff staff) {
+		
+		/*
+		 * !!!!!!
+		 * Add logic to remove staff
+		 * !!!!!!
+		 */
+	}
+	
+	/**
+	 * Method to assign number of staff required by course
+	 * @param course
+	 * @param req number of staff required
+	 */
+	public void assignCourseRequirements(Course course, int req) {
+
+		/*
+		 * !!!!!!
+		 * Add logic to set requirements
+		 * !!!!!!
+		 */
+		
+	}
+	
+	/**
+	 * Set approval 
+	 * @param course
+	 */
+	public void giveRequestApproval(Course course, boolean approval) {
+		course.setApproved(approval);
 	}
 	
 	/**

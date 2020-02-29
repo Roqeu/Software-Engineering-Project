@@ -6,12 +6,20 @@ import java.util.ArrayList;
  * @author Andrew
  * 
  * Public Methods:
+ * 	public ArrayList<Staff> returnStaffList()
+ * 	public Staff findStaff(int ID)
  * 	public void createStaff(String name, int hours)
  * 	public ArrayList<Staff> AvailableStaff()
+ * 	public ArrayList<Staff> UnavailableStaff()
  * 	public ArrayList<Staff> UntrainedStaff()
  * 	public ArrayList<Staff> StaffWithTraining()
+ * 	public ArrayList<Course> returnCourseList()
  * 	public void  createCourse(String name)
+ * 	public Course findCourse(int ID)
+ * 	public ArrayList<Course> findUnapprovedCourses()
  * 	public void addStaffToCourse(Course course, Staff staff)
+ * 	public void removeStaffFromCourse(Course course, Staff staff)
+ * 	public void assignCourseRequirements(Course course, int req)
  * 	public void train(Course course, Staff staff)
  * 	public void giveRequestApproval(Course course, boolean approval)
  *
@@ -80,11 +88,20 @@ public class Model {
 	
 	/**
 	 * Method to return all staff available to be assigned
-	 * @return all staff with remaining hours
+	 * @return all available staff
 	 */
 	public ArrayList<Staff> AvailableStaff(){
 		
 		return staffList.findAvailableStaff();
+	}
+	
+	/**
+	 * Method to return all staff unavailable to be assigned
+	 * @return all unavailable staff
+	 */
+	public ArrayList<Staff> UnavailableStaff(){
+		
+		return staffList.findUnavailableStaff();
 	}
 	
 	/**
@@ -139,6 +156,14 @@ public class Model {
 	}
 	
 	/**
+	 * Method to return ArrayList of unapproved courses
+	 * @return ArrayList of unapproved courses
+	 */
+	public ArrayList<Course> findUnapprovedCourses(){
+		return this.courseList.findUnapprovedCourses();
+	}
+	
+	/**
 	 * Method to add staff to course
 	 * @param course
 	 * @param staff
@@ -148,7 +173,30 @@ public class Model {
 		courseList.addStaffToCourse(course, staff);
 		
 	}
+	
+	/**
+	 * Method to remove staff member from course
+	 * @param course
+	 * @param staff
+	 */
+	public void removeStaffFromCourse(Course course, Staff staff) {
+		
+		courseList.removeStaffFromCourse(course, staff);
+	}
+	
+	
+	/**
+	 * Method to assign number of staff required by course
+	 * @param course
+	 * @param req number of staff required
+	 */
+	public void assignCourseRequirements(Course course, int req) {
 
+		this.courseList.assignCourseRequirements(course, req);
+		
+	}
+	
+	
 	/**
 	 * Method to add training for 
 	 * given course to given staff
@@ -164,12 +212,8 @@ public class Model {
 	 * @param course
 	 */
 	public void giveRequestApproval(Course course, boolean approval) {
-		course.setApproved(approval);
+		this.courseList.giveRequestApproval(course, approval);
 	}
 
-
-
-	
-	
 	
 }
