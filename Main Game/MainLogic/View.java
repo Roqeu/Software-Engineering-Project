@@ -56,6 +56,9 @@ public class View {
         System.out.println("Course: " + course.getName());
         System.out.println("Required Staff: " + course.getRequirements());
         System.out.println("Assigned Staff: " + course.getAssignedStaff());
+        System.out.println("");
+        System.out.println("1. Assign Staff \n2. Remove Staff");
+        exit();
     }
     public void displayUntrainedStaff(ArrayList<Staff> staffList) {
         for (Staff staff : staffList) {
