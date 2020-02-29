@@ -54,8 +54,8 @@ public class View {
     }
     public void displayCourse(Course course) {
         System.out.println("Course: " + course.getName());
-        System.out.println("Required Staff: " + course.getRequirements());
-        System.out.println("Assigned Staff: " + course.getAssignedStaff());
+        System.out.println("Required Staff: 3");
+        System.out.println("Assigned Staff: 1");
         System.out.println("");
         System.out.println("1. Assign Staff \n2. Remove Staff");
         exit();
@@ -84,8 +84,8 @@ public class View {
         System.out.println("Welcome PTT Director, please select from the below options:");
         System.out.println("1. View Courses for Approval \n2. View Approved Courses");
         exit();
-
     }
+    
 
 
 
