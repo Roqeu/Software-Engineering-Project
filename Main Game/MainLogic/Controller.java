@@ -35,7 +35,7 @@ public class Controller {
 				
 		// If user does not select a valid input
 		// ask for a valid input and store input
-		while(selected > 0 && selected < 4) {
+		while(selected < 0 || selected < 4) {
 			
 			// Warns user of invalid input
 			view.incorrectInput();
@@ -63,7 +63,7 @@ public class Controller {
 		view.displayCourses(courseList);
 		
 		// Will keep asking for input until valid input received
-		while(selected >= 0 && selected <= courseList.size()) {
+		while(selected < 0 || selected > courseList.size()) {
 			
 			// Displays wrong input message
 			view.incorrectInput();
@@ -102,7 +102,7 @@ public class Controller {
 		// Stores user selection
 		int selected = userInput.nextInt();
 		
-		while(userInput < 0 && userInput > 4) {
+		while(selected < 0 || selected > 4) {
 			
 			// Displays wrong input message
 			view.incorrectInput();
@@ -140,7 +140,34 @@ public class Controller {
 	 */
 	public boolean pttDirectorOptions() {
 		
+		// Stores list of course
+		ArrayList<Course> courseList = model.getCourseList();
 		
+		// Displays courses
+		view.displayCourses(courseList);
+		
+		// Stores user input
+		int selected = userInput.nextInt();
+		
+		// Loops until user input is valid
+		while(selected < 0 || selected > courseList.size()) {
+			
+			// Displays wrong input message
+			view.incorrectInput();
+			// Displays courses
+			view.displayCourses(courseList);
+			// Stores user input
+			selected = userInput.nextInt();
+		}
+		
+		// If user choses to exit, return false
+		if(selected == 0 ) {
+			
+			return false;
+		}
+		
+		// Displays requirement approval menu
+		approveRequest(courseList.get(selected - 1));
 	}
 	
 	/**
@@ -150,12 +177,12 @@ public class Controller {
 	private static boolean assignRequirements(Course course) {
 		
 		// Displays assign requirements message
-		view.askRequirement());
+		view.askRequirement();
 		
 		// Stores user input
 		int selected = userInput.nextInt();
 		
-		// If user choses to exit, return false
+		// If user chooses to exit, return false
 		if(selected == 0) {
 			
 			return false;
@@ -196,7 +223,7 @@ public class Controller {
 		int selected = userInput.nextInt();
 		
 		// Loops until valid input is selected
-		while(selected > 0 && selected < requirements.size()) {
+		while(selected < 0 || selected > requirements.size()) {
 					
 			// Displays wrong input message
 			view.incorrectInput();
@@ -232,7 +259,7 @@ public class Controller {
 		int selected = userInput.nextInt();
 		
 		// Loop until user selects valid input
-		while(selected >= 0 && selected <= 2) {
+		while(selected < 0 || selected > 2) {
 			
 			// Displays wrong input message
 			view.incorrectInput();
@@ -269,7 +296,7 @@ public class Controller {
 		int selected = userInput.nextInt();
 		
 		// Loops until valid input is selected
-		while(selected >= 0 && selected <= availableStaff.size()) {
+		while(selected < 0 || selected > availableStaff.size()) {
 				
 			// Displays wrong input message
 			view.incorrectInput();
@@ -307,7 +334,8 @@ public class Controller {
 		// Stores user input
 		int selected = userInput.nextInt();
 		
-		while(selected >= 0 && selected <= staff.size()) {
+		// Loops until user enters valid input
+		while(selected < 0 || selected > staff.size()) {
 			
 			// Displays wrong input message
 			view.incorrectInput();
@@ -330,11 +358,40 @@ public class Controller {
 	}
 	
 	/**
-	 * Allows any user to return to the main choices menu
-	 * @return int 1 - make more changes, 2 - quit, 3 - return to main menu
+	 * Allows the PTT Director to approve courses
+	 * @param course
+	 * @return boolean
 	 */
-	public int makeAnotherChoice() {
+	private static boolean approveRequirements(Course course) {
 		
+		// Asks user to approve a course requirement
+		view.approveRequirement(course);
 		
+		// Stores user input
+		int selected = userInput.nextInt();
+		
+		// Loops until user enters valid input
+		while(selected < 0 || selected > 1) {
+			
+			// Displays wrong input message
+			view.incorrectInput();
+			// Asks user to approve a course requirement
+			view.approveRequirement(course);						
+			// Stores user input
+			selected = userInput.nextInt();
+		}
+		
+		if(selected == 0) {
+			
+			return false;
+		} else if(selected == 1) {
+			
+			// Requirement approved
+			model.giveRequestApproval(course, true);
+		} else {
+			
+			// Requirement not approved
+			model.giveRequestApproval(course, false);
+		}
 	}
 }
