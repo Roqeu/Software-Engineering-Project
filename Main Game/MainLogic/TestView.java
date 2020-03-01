@@ -11,8 +11,8 @@ public class TestView {
 
         ArrayList<Course> courses = new ArrayList<Course>();
 
-        Course programming = new Course("Programming", 1, 5, 2);
-        Course database = new Course("Databases", 2, 4, 3);
+        Course programming = new Course("Programming", 1);
+        Course database = new Course("Databases", 2);
 
         courses.add(programming);
         courses.add(database);
@@ -27,14 +27,43 @@ public class TestView {
         staffList.add(dory);
         staffList.add(andrew);
 
+        System.out.println("Select User View:");
+        view.selectUser();
+
+        System.out.println("Display Courses view:");
+        view.displayCourses(courses);
+
+        System.out.println("Course director options:");
+        view.courseDirectorOptions();
+
+        System.out.println("Create course option");
         view.createCourse();
-        // view.selectUser();
-        // view.courseDirectorOptions();
-        // view.adminOptions();
-        // view.pttDirectorOptions();
-        // view.listCourses(courses);
-        // view.displayStaffList(staffList);
-        // view.displayTeachingRequirments(courses);
+
+        System.out.println("Ask Requirements");
+        view.askRequirement();
+
+        System.out.println("Administrator options view: ");
+        view.adminOptions();
+
+        System.out.println("Display staff list view");
+        view.displayStaff(staffList);
+
+        System.out.println("Display course options view");
+        view.displayCourseOptions(programming);
+
+        System.out.println("Display untrained staff list");
+        view.displayUntrainedStaff(staffList);
+
+        System.out.println("Create Staff view");
+        view.createStaff();
+
+        System.out.println("PTT Director options");
+        view.pttDirectorOptions();
+
+
+        System.out.println("Exit option and incorrect input test");
+        view.incorrectInput();
+        view.exit();
 
 
     }

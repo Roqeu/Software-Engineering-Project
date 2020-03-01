@@ -52,7 +52,7 @@ public class View {
         }
         exit();
     }
-    public void displayCourse(Course course) {
+    public void displayCourseOptions(Course course) {
         System.out.println("Course: " + course.getName());
         System.out.println("Required Staff: 3");
         System.out.println("Assigned Staff: 1");
