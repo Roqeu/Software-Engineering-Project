@@ -1,65 +1,55 @@
 package MainLogic;
 import java.util.ArrayList;
 
+/**
+ * Model class for teaching requirements program
+ * @author Andrew
+ * 
+ * Public Methods:
+ * 	public ArrayList<Staff> returnStaffList()
+ * 	public Staff findStaff(int ID)
+ * 	public void createStaff(String name, int hours)
+ * 	public ArrayList<Staff> AvailableStaff()
+ * 	public ArrayList<Staff> UnavailableStaff()
+ * 	public ArrayList<Staff> UntrainedStaff()
+ * 	public ArrayList<Staff> StaffWithTraining()
+ * 	public ArrayList<Course> returnCourseList()
+ * 	public void  createCourse(String name)
+ * 	public Course findCourse(int ID)
+ * 	public ArrayList<Course> findUnapprovedCourses()
+ * 	public void addStaffToCourse(Course course, Staff staff)
+ * 	public void removeStaffFromCourse(Course course, Staff staff)
+ * 	public void assignCourseRequirements(Course course, int req)
+ * 	public void train(Course course, Staff staff)
+ * 	public void giveRequestApproval(Course course, boolean approval)
+ *
+ */
 public class Model {
 	
 	/**
 	 *  ArrayList for courses
 	 */
-	private ArrayList<Course> courseList;
+	private ListOfCourses courseList;
 	
 	/**
 	 * ArrayList for staff
 	 */
-	private ArrayList<Staff> staffList;
+	private ListOfStaff staffList;
 	
+
+
 	/**
-	 * next ID to be given to newly created staff member
+	 * Constructor
 	 */
-	private int nextStaffID;
-	
-	/**
-	 * next ID to be given to newly create course
-	 */
-	private int nextCourseID;
-	
 	public Model() {
-		courseList = new ArrayList<Course>();
-		staffList = new ArrayList<Staff>();
+		courseList = new ListOfCourses();
+		staffList = new ListOfStaff();
 		
 		/*
 		 *  need to add population from FileIO
 		 */
-		
-		/*
-		 * Set next staff ID
-		 */
-		
-		// set ID to most recent addition + 1
-		if(!staffList.isEmpty()) {
-			int currentID = staffList.get(staffList.size() - 1).getID();
-			nextStaffID = currentID + 1;
-		}
-		// if empty, set to 0
-		else {
-			nextStaffID = 0;
-		}
-		
-		/*
-		 * Set next course ID
-		 */
-		
-		// set ID to most recent addition + 1
-		if(!courseList.isEmpty()) {
-			int currentID = courseList.get(courseList.size() - 1).getID();
-			nextCourseID = currentID + 1;
-		}
-		// if empty, set to 0
-		else {
-			nextCourseID = 0;
-		}
+
 	}
-	
 	
 	/*
 	 * ==================================================
@@ -69,72 +59,67 @@ public class Model {
 	
 	
 	/**
+	 * Method to get ArrayList of all staff
+	 * @return staffList from within this.staffList object
+	 */
+	public ArrayList<Staff> returnStaffList(){
+		return this.staffList.getStaffList();
+	}
+	
+	/**
+	 * Method to find staff for given ID
+	 * @param ID staff ID
+	 * @return staff member
+	 */
+	public Staff findStaff(int ID) {
+		return this.staffList.find(ID);
+	}
+	
+	/**
 	 * Method to add new staff member to staffList
 	 * @param name staff member name
 	 * @param hours number of hours available
 	 */
 	public void createStaff(String name, int hours) {
-		this.staffList.add(new Staff(name, nextStaffID, hours));
-		nextStaffID++;
+		
+		this.staffList.createStaff(name, hours);
+		
 	}
 	
 	/**
-	 * Method to return all staff with remaining hours
-	 * @return all staff with remaining hours
+	 * Method to return all staff available to be assigned
+	 * @return all available staff
 	 */
 	public ArrayList<Staff> AvailableStaff(){
-		ArrayList<Staff> availableStaff = new ArrayList<Staff>();
 		
-		for(Staff s : staffList) {
-			if(s.hoursRemaining() > 0) {
-				availableStaff.add(s);
-			}
-		}
-		
-		return availableStaff;
+		return staffList.findAvailableStaff();
 	}
 	
 	/**
-	 * Method to return list of staff who are not trained for a given course
-	 * @param course
-	 * @return list of staff not trained for given course
+	 * Method to return all staff unavailable to be assigned
+	 * @return all unavailable staff
 	 */
-	public ArrayList<Staff> UntrainedStaff(Course course){
-		ArrayList<Staff> untrainedStaff = new ArrayList<Staff>();
+	public ArrayList<Staff> UnavailableStaff(){
 		
-		for(Staff s : staffList) {
-			
-			/*
-			 * if staff member doesn't have training 
-			 * for given course add to untrained staff
-			 */
-			if(!s.getTraining().contains(course.getID())) {
-				untrainedStaff.add(s);
-			}
-		}
-		
-		return untrainedStaff;
+		return staffList.findUnavailableStaff();
 	}
 	
 	/**
-	 * Method to return list of staff who are trained for a given course
-	 * @param course
-	 * @return list of staff trained for given course
+	 * Method to return list of staff who are not trained
+	 * @return list of trained staff
 	 */
-	public ArrayList<Staff> StaffWithTraining(Course course){
-		ArrayList<Staff> trainedStaff = new ArrayList<Staff>();
+	public ArrayList<Staff> UntrainedStaff(){
+				
+		return staffList.findUntrainedStaff();
+	}
+	
+	/**
+	 * Method to return list of staff who are trained
+	 * @return list of trained staff
+	 */
+	public ArrayList<Staff> StaffWithTraining(){
 		
-		for(Staff s : staffList) {
-			/*
-			 * if staff member has training 
-			 * for given course add to trained staff
-			 */
-			if(s.getTraining().contains(course.getID())) {
-				trainedStaff.add(s);
-			}
-		}
-		
-		return trainedStaff;
+		return staffList.findTrainedStaff();
 	}
 	
 	/*
@@ -143,26 +128,74 @@ public class Model {
 	 * ====================================================
 	 */
 	
+	/**
+	 * Method to get ArrayList of all courses
+	 * @return courseList from within this.courseList object
+	 */
+	public ArrayList<Course> returnCourseList() {
+		return this.courseList.getCourseList();
+	}
 	
 	/**
 	 * Create new course
 	 * @param name course name
 	 */
 	public void  createCourse(String name) {
-		 courseList.add(new Course(name, nextCourseID));
-		 nextCourseID++;
+		
+		courseList.createCourse(name);
+		
+	}
+	
+	/**
+	 * Method to find course for given ID
+	 * @param ID course ID
+	 * @return
+	 */
+	public Course findCourse(int ID) {
+		return this.courseList.find(ID);
+	}
+	
+	/**
+	 * Method to return ArrayList of unapproved courses
+	 * @return ArrayList of unapproved courses
+	 */
+	public ArrayList<Course> findUnapprovedCourses(){
+		return this.courseList.findUnapprovedCourses();
 	}
 	
 	/**
 	 * Method to add staff to course
-	 * 
-	 * Need to add checks for hours etc ?????????????????????
 	 * @param course
 	 * @param staff
 	 */
 	public void addStaffToCourse(Course course, Staff staff) {
-		course.addStaff(staff);
+		
+		courseList.addStaffToCourse(course, staff);
+		
 	}
+	
+	/**
+	 * Method to remove staff member from course
+	 * @param course
+	 * @param staff
+	 */
+	public void removeStaffFromCourse(Course course, Staff staff) {
+		
+		courseList.removeStaffFromCourse(course, staff);
+	}
+	
+	
+	/**
+	 * Method to assign number of staff required by course
+	 * @param course
+	 * @param req number of staff required
+	 */
+	public void assignCourseRequirements(Course course, int req) {
+
+		this.courseList.assignCourseRequirements(course, req);
+		
+	}
+	
 	
 	/**
 	 * Method to add training for 
@@ -171,7 +204,7 @@ public class Model {
 	 * @param staff
 	 */
 	public void train(Course course, Staff staff) {
-		staff.addTraining(course.getID());
+		courseList.train(course, staff);
 	}
 	
 	/**
@@ -179,19 +212,8 @@ public class Model {
 	 * @param course
 	 */
 	public void giveRequestApproval(Course course, boolean approval) {
-		course.setApproved(approval);
+		this.courseList.giveRequestApproval(course, approval);
 	}
 
-
-	public ArrayList<Course> getCourseList() {
-		return courseList;
-	}
-
-
-	public ArrayList<Staff> getStaffList() {
-		return staffList;
-	}
-	
-	
 	
 }
