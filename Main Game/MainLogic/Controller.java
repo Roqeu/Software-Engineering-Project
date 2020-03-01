@@ -63,7 +63,7 @@ public class Controller {
 		view.displayCourses(courseList);
 		
 		// Will keep asking for input until valid input received
-		while(selected < 0 || selected > courseList.size()) {
+		while(selected < 0 || selected > courseList.size() + 1) {
 			
 			// Displays wrong input message
 			view.incorrectInput();
@@ -78,9 +78,18 @@ public class Controller {
 		if(selected == 0) {
 			
 			return false;
+			// If user selects to add new course
+		} else if (selected == courseList.size() + 1) {
+			
+			createCourse();
+			return true;
+			// Else let user assign requirements
+		} else {
+			
+			assignRequirements(courseList.get(selected - 1));
 		}
 		
-		return assignRequirements(courseList.get(selected - 1));
+		return true;
 	}
 	
 	/**
@@ -91,10 +100,6 @@ public class Controller {
 	 * Will allow training to be assigned
 	 */
 	public boolean adminOptions() {
-		
-		// Boolean representing exit to user selection 
-		// if false will repeat adminOptions()
-		boolean exit = false;
 		
 		// Shows administrator options
 		view.adminOptions();
@@ -116,22 +121,22 @@ public class Controller {
 		
 		// If 0 selected return to user selection
 		case 0:
-			exit = true;
+			return false;
 		// If 1 selected display staff
 		case 1:
 			view.displayStaff(model.getStaffList());
 		// If 2 selected enter course assignment menu
 		case 2:
-			exit = fillRequirements(model.findRequirements());
+			fillRequirements(model.findRequirements());
 		// If 3 selected enter add staff menu
 		case 3:
-			exit = createNewStaffMember();
+			createNewStaffMember();
 		// If 4 selected show untrained staff
 		case 4:
 			view.displayUntrainedStaff(model.findUntrainedStaff());
 		}
 		
-		return exit;
+		return true;
 	}
 	
 	/**
@@ -164,17 +169,22 @@ public class Controller {
 		if(selected == 0 ) {
 			
 			return false;
+		} else if(selected == 1) {
+			
+			// If user selected to view approved courses show approved courses
+			unapproveCourse();
 		}
 		
 		// Displays requirement approval menu
-		approveRequest(courseList.get(selected - 1));
+		approveRequirements(courseList.get(selected - 1));
+		
+		return true;
 	}
 	
 	/**
 	 * Allows course director to assign requirements to a given course
-	 * @return boolean
 	 */
-	private static boolean assignRequirements(Course course) {
+	private static void assignRequirements(Course course) {
 		
 		// Displays assign requirements message
 		view.askRequirement();
@@ -185,20 +195,35 @@ public class Controller {
 		// If user chooses to exit, return false
 		if(selected == 0) {
 			
-			return false;
+			return;
 		}
 		
 		// Assigns requirement
 		model.assignRequirement(course, selected);
+	}
+	
+	/**
+	 * Allows Course Director to create new courses
+	 */
+	private static void createCourse() {
 		
-		return true;
+		// Asks user to input a course name
+		view.courseName();
+		// Stores user input
+		String name = userInput.nextLine();
+		
+		// Ask user to input course requirements
+		view.askRequirements();
+		// Stores user input
+		int requirement = userInput.nextInt();
+		
+		model.createCourse(name, requirement);
 	}
 	
 	/**
 	 * Allows administrator to create new staff members
-	 * @return boolean
 	 */
-	private static boolean createNewStaffMember() {
+	private static void createNewStaffMember() {
 		
 		view.createStaff();
 		
@@ -212,9 +237,8 @@ public class Controller {
 	/**
 	 * Allows admin to view course requirements and add or remove staff
 	 * @param ArrayList<Course>
-	 * @return boolean
 	 */
-	private static boolean fillRequirements(ArrayList<Course> requirements) {
+	private static void fillRequirements(ArrayList<Course> requirements) {
 		
 		// Displays list of courses
 		view.displayCourses(requirements);
@@ -236,21 +260,20 @@ public class Controller {
 		// If user wants to return to admin options, return
 		if(selected == 0) {
 			
-			return false;
+			return;
 		}
 		
 		// Stores course selection
 		Course course = requirements.get(selected - 1);
 		
-		return courseOptions(course);
+		courseOptions(course);
 	}
 	
 	/**
 	 * Displays the course requirements and add/remove staff options
 	 * @param Course
-	 * @return boolean
 	 */
-	private static boolean courseOptions(Course course) {
+	private static void courseOptions(Course course) {
 		
 		// Displays course options
 		view.courseOptions(course);
@@ -272,19 +295,18 @@ public class Controller {
 		switch (selected) {
 		
 		case 0:
-			return false;
+			return;
 		case 1:
-			return assignStaff(course);
+			assignStaff(course);
 		case 2:
-			return removeStaff(course);
+			removeStaff(course);
 		}
 	}
 	
 	/**
 	 * Allows administrator to assign staff to a course
-	 * @return boolean
 	 */
-	private static boolean assignStaff(Course course) {
+	private static void assignStaff(Course course) {
 		
 		// Stores available staff
 		ArrayList<Staff> availableStaff = model.findAvailableStaff();
@@ -309,21 +331,18 @@ public class Controller {
 		// If user selects to exit return false
 		if(selected == 0) {
 			
-			return false;
+			return;
 		}
 		
 		// Adds selected staff member to course
 		model.addStaffToCourse(course, availableStaff.get(selected - 1));
-		
-		return true;
 	}
 
 	
 	/**
 	 * Allows administrator to remove staff member from course
-	 * @return boolean
 	 */
-	private static boolean removeStaff(Course course) {
+	private static void removeStaff(Course course) {
 		
 		// Stores staff associated with this course
 		ArrayList<Staff> staff = model.getAssignedStaff(course);
@@ -348,21 +367,18 @@ public class Controller {
 		// If user selects to exit return false
 		if(selected == 0) {
 			
-			return false;
+			return;
 		}
 		
 		// Remove selected staff from selected course
 		model.removeStaff(course, staff.get(selected - 1));
-		
-		return true;
 	}
 	
 	/**
 	 * Allows the PTT Director to approve courses
 	 * @param course
-	 * @return boolean
 	 */
-	private static boolean approveRequirements(Course course) {
+	private static void approveRequirements(Course course) {
 		
 		// Asks user to approve a course requirement
 		view.approveRequirement(course);
@@ -381,17 +397,57 @@ public class Controller {
 			selected = userInput.nextInt();
 		}
 		
+		// If user selects to exit return false
 		if(selected == 0) {
 			
-			return false;
+			return;
 		} else if(selected == 1) {
 			
 			// Requirement approved
 			model.giveRequestApproval(course, true);
-		} else {
-			
-			// Requirement not approved
-			model.giveRequestApproval(course, false);
 		}
+	}
+	
+	/**
+	 * Allows PTT Director to view approved courses and unapprove if needed
+	 */
+	private static void unapproveCourse() {
+		
+		// Gets approved courses
+		ArrayList<Course> approvedCourses = model.getApprovedCourses();
+		
+		// If there are no approved course tell user and exit
+		if(approvedCourses.size() == 0) {
+			
+			view.noApprovedCourses();
+			
+			return;
+		}
+		
+		// Shows approved courses and asks for user input
+		view.displayApprovedCourses(approvedCourses);
+		
+		// Stores user input
+		int selected = userInput.nextInt();
+		
+		// Loops until user enters valid input
+		while(selected < 0 || selected > 1) {
+					
+			// Displays wrong input message
+			view.incorrectInput();
+			// Asks user to approve a course requirement
+			view.displayApprovedCourses(approvedCourses);						
+			// Stores user input
+			selected = userInput.nextInt();
+		}
+				
+		// If user selects to exit return false
+		if(selected == 0) {
+					
+			return;
+		}
+				
+		// Unapproves Course
+		model.giveRequestApproval(approvedCourses.get(selected - 1), false);
 	}
 }
