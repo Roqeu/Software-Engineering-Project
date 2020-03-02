@@ -1,69 +1,85 @@
 package MainLogic;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Course {
-	
-	/*
-	 * Course attributes
-	 */
-	
-	// unique ID
 	private int ID;
-	
-	// Course name
 	private String name;
-	
-	// List of staff working on this course
-	private ArrayList<Staff> staff;
-	
-	// WHether course has been approved by PTT director
 	private boolean approved;
+	private int requiredStaff;
+	private int assignedStaff;
+	private List<Integer> staffID;
 	
-	public Course(String name, int ID) {
+	public Course(int ID, String name, boolean approved, int requiredStaff, int assignedStaff, List<Integer> staffID) {
 		this.ID = ID;
 		this.name = name;
-		this.staff = new ArrayList<Staff>();
-		this.approved = false;
+		this.approved = approved;
+		this.requiredStaff = requiredStaff;
+		this.assignedStaff = assignedStaff;
+		this.staffID = staffID;
 	}
 	
-	/**
-	 * Method to add staff to staff list working on this course
-	 * @param staff staff member to be added
-	 */
-	public void addStaff(Staff staff) {
-		this.staff.add(staff);
+	public Course(int ID, String name, int requiredStaff) {
+		this.ID = ID;
+		this.name = name;
+		this.requiredStaff = requiredStaff;
+		this.assignedStaff = 0;
+		this.staffID = new ArrayList<Integer>();
+		
 	}
-
 	
-	public String toString() {
-		String output = "";
-		output += "Course: " + this.name + "\n";
-		output += "Approved: " + this.approved + "\n";
-		output += "Staff:\n";
-		for(Staff staff : staff) {
-			output +=  staff + "\n";
+	public boolean checkFull() {
+		if (this.requiredStaff == this.assignedStaff) {
+			return true;
 		}
 		
-		return output;
+		return false;	
 	}
 	
-	/*
-	 * Getters and setters
-	 */
+	public void addStaff(Staff staff) {
+		this.staffID.add(staff.getID());
+		
+	}
 	
 	public int getID() {
 		return ID;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
-
-	public ArrayList<Staff> getStaff() {
-		return staff;
+	
+	private List<Integer> getStaffID() {
+		return staffID;
+	}
+	
+	private int getRequiredStaff() {
+		return requiredStaff;
+	}
+	
+	private int getAssignedStaff() {
+		return assignedStaff;
 	}
 
+	
+	public void setRequirements(int requirements) {
+		this.requiredStaff = requirements;
+		
+	}
+	
+	public int getRequirements() {
+		return this.requiredStaff;
+		
+	}
+	
+	public boolean isApproved() {
+		return approved;
+		
+	}
+	
 	public void setApproved(boolean approved) {
 		this.approved = approved;
 	}
+
 }
+
