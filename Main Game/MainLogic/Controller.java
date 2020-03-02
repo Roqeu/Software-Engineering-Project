@@ -507,4 +507,16 @@ public class Controller {
 		// Unapproves Course
 		model.giveRequestApproval(approvedCourses.get(selected - 1), false);
 	}
+	
+	/**
+	 * Closes scanner and writed to file
+	 */
+	public void exit() {
+		
+		// Closes scanner
+		userInput.close();
+		
+		// Writes state to file
+		model.writeToFile();
+	}
 }
