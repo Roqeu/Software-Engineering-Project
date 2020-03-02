@@ -17,12 +17,22 @@ public class View {
     }
     public void displayCourses(ArrayList<Course> courses) {
         //iterate over course list and print out each class, then a quit item at the end
-        int selectNum = 1;
-        for (Course course : courses) {
-            System.out.println(selectNum+". "+ course.getName());
-            selectNum++;
+        if (courses.size() == 0) {
+            System.out.println("There are no courses to display!");
+        } else {
+            int selectNum = 1;
+            for (Course course : courses) {
+                System.out.println(selectNum+". "+ course.getName());
+                selectNum++;
+            }
         }
         exit();
+    }
+    public void displayCourse(Course course) {
+        System.out.println("Course: " + course.getName());
+        System.out.println("Required Staff: ");
+        System.out.println("Assigned Staff: ");
+        System.out.println("");
     }
 
     //Course director methods
@@ -46,38 +56,27 @@ public class View {
         System.out.println("1. View Staff \n2. View Course Requirements \n3. Create Staff \n4. View Untrained Staff");
         exit();
     }
+    
     public void displayStaff(ArrayList<Staff> staffList) {
         for (Staff staff: staffList) {
             System.out.println(staff);
         }
         exit();
     }
-    public void displayCourseOptions(Course course) {
-        System.out.println("Course: " + course.getName());
-        System.out.println("Required Staff: 3");
-        System.out.println("Assigned Staff: 1");
-        System.out.println("");
+
+    public void displayAdminCourseOptions() {
         System.out.println("1. Assign Staff \n2. Remove Staff");
         exit();
     }
-    public void displayUntrainedStaff(ArrayList<Staff> staffList) {
-        for (Staff staff : staffList) {
-            System.out.println(staff);
-        }
-        exit();
-    }
+
     public void createStaff() {
         System.out.println("Please enter the name of the member of staff below: ");
     }
 
-    // public void displayCourseRequirments(ArrayList<Course> requirements) {
-    //     int selectNum = 1;
-    //     for(Course course : requirements) {
-    //         System.out.println(selectNum + ". " + course.getName() + ", Required Staff: " + course.getRequirements() + ", Assigned Staff: " +course.getAssignedStaff());
-    //         selectNum++;
-    //     }
-    //     exit();
-    // }
+    public void trainStaffOptions() {
+        System.out.println("Please select the ID of a member of staff to train:");
+        exit();
+    }
 
     //PTT Director methods
     public void pttDirectorOptions() {
@@ -85,7 +84,15 @@ public class View {
         System.out.println("1. View Courses for Approval \n2. View Approved Courses");
         exit();
     }
-    
+    public void displayPTTDirectorCourseOptions(Course course) {
+
+        if (!course.getApproved()) {
+            System.out.println("1. Unapprove Course");
+        } else {
+            System.out.println("1. Approve Course");
+        }
+        exit();
+    }
 
 
 
