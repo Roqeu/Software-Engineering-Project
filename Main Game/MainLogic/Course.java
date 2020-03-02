@@ -49,15 +49,15 @@ public class Course {
 		return name;
 	}
 	
-	private List<Integer> getStaffID() {
+	public List<Integer> getStaffID() {
 		return staffID;
 	}
 	
-	private int getRequiredStaff() {
+	public int getRequiredStaff() {
 		return requiredStaff;
 	}
 	
-	private int getAssignedStaff() {
+	public int getAssignedStaff() {
 		return assignedStaff;
 	}
 
