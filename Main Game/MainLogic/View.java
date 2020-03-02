@@ -74,7 +74,7 @@ public class View {
      * Method to display prompt for number of required staff on course
      */
     public void askRequirement() {
-        System.out.println("Please enter the number of required staff for selected course:  (Enter 0 to exit)");
+        System.out.println("Please enter the number of required staff for the selected course:  (Enter 0 to exit)");
     }
 
     /**
