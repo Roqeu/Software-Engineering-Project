@@ -25,7 +25,7 @@ public class ProgramLoop {
 		while(!quit) {
 			
 			// Stores a boolean used to end application loop
-			boolean returnToMainMenu = true;
+			boolean returnToMainMenu = false;
 			
 			// Stores the users choice and will only return 1, 2 or 3
 			int userChoice = controller.selectUser();

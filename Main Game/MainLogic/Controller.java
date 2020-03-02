@@ -29,13 +29,15 @@ public class Controller {
 	 * @return int 
 	 */
 	public int selectUser() {
-		
+		 
+		// Displays user selection screen
+		view.selectUser();
 		// Stores user input
 		int selected = userInput.nextInt();
 				
 		// If user does not select a valid input
 		// ask for a valid input and store input
-		while(selected < 0 || selected < 4) {
+		while(selected < 0 || selected > 4) {
 			
 			// Warns user of invalid input
 			view.incorrectInput();
@@ -53,11 +55,11 @@ public class Controller {
 	 */
 	public boolean courseDirectorOptions() {
 		
-		// Stores user input
-		int selected = userInput.nextInt();
-		
 		// Displays course director options
 		view.courseDirectorOptions();
+		
+		// Stores user input
+		int selected = userInput.nextInt();
 		
 		// Will keep asking for input until valid input received
 		while(selected < 0 || selected > 2) {
@@ -74,17 +76,17 @@ public class Controller {
 		// If user has selected to return to user selection return false
 		if(selected == 0) {
 			
-			return false;
+			return true;
 			// If user selects to add new course
 		} else if (selected == 1) {
 			
 			unapprovedCourses();
-			return true;
+			return false;
 			// Else let user assign requirements
 		} else {
 			
 			createCourse();
-			return true;
+			return false;
 		}
 	}
 	
@@ -113,26 +115,29 @@ public class Controller {
 			selected = userInput.nextInt();
 		}
 		
-		switch(selected) {
-		
 		// If 0 selected return to user selection
-		case 0:
-			return false;
-		// If 1 selected display staff
-		case 1:
+		if(selected == 0) {
+			
+			return true;
+			// If 1 selected display staff
+		} else if(selected == 1) {
+			
 			view.displayStaff(model.returnStaffList());
-		// If 2 selected enter course assignment menu
-		case 2:
+			// If 2 selected enter course assignment menu
+		} else if(selected == 2) {
+			
 			fillRequirements(model.findUnapprovedCourses());
-		// If 3 selected enter add staff menu
-		case 3:
+			// If 3 selected enter add staff menu
+		} else if(selected == 3){
+			
 			createNewStaffMember();
-		// If 4 selected show untrained staff
-		case 4:
+			// If 4 selected show untrained staff
+		} else {
+			
 			train();
 		}
 		
-		return true;
+		return false;
 	}
 	
 	/**
@@ -161,7 +166,7 @@ public class Controller {
 		// If user choses to exit, return false
 		if(selected == 0 ) {
 			
-			return false;
+			return true;
 		} else if(selected ==  1) {
 			
 			// Displays requirement approval menu
@@ -172,7 +177,7 @@ public class Controller {
 			unapproveCourse();			
 		}
 		
-		return true;
+		return false;
 	}
 	
 	/**
@@ -236,7 +241,7 @@ public class Controller {
 		// Asks user to input a course name
 		view.createCourse();
 		// Stores user input
-		String name = userInput.nextLine();
+		String name = userInput.next();
 		
 		// Ask user to input course requirements
 		view.askRequirement();
@@ -479,7 +484,7 @@ public class Controller {
 	private static void unapproveCourse() {
 		
 		// Gets approved courses
-		ArrayList<Course> approvedCourses = model.getApprovedCourses();
+		ArrayList<Course> approvedCourses = model.findApprovedCourses();
 		
 		// Shows approved courses and asks for user input
 		view.displayCourses(approvedCourses);
@@ -517,6 +522,6 @@ public class Controller {
 		userInput.close();
 		
 		// Writes state to file
-		model.writeToFile();
+		//model.writeToFile();
 	}
 }
