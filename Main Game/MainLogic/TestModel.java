@@ -59,7 +59,22 @@ public class TestModel {
 			System.out.println(ID);
 		}
 		
+		/*
+		 * Remove staff member 2
+		 */
+		
+		System.out.println("\n--- Removing staff member ---");
+		model.removeStaffFromCourse(courseToBeAddedTo, staffToAdd2);
+		
+		/*
+		 * Check staff in course after removal
+		 */
 		
 		
+		
+		System.out.println("\nStaff in course after removal:");
+		for(int ID : courseToBeAddedTo.getStaffID()) {
+			System.out.println(ID);
+		}
 	}
 }

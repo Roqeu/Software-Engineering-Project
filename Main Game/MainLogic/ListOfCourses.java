@@ -127,11 +127,8 @@ public class ListOfCourses {
 	 */
 	public void removeStaffFromCourse(Course course, Staff staff) {
 		
-		/*
-		 * !!!!!!
-		 * Add logic to remove staff
-		 * !!!!!!
-		 */
+		course.removeStaff(staff);
+
 	}
 	
 	/**
