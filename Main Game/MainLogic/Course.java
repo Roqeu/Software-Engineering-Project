@@ -41,6 +41,18 @@ public class Course {
 		
 	}
 	
+	public void removeStaff(Staff staff) {
+		
+		for (int i=0;i<staffID.size();i++) {
+			
+			if (staffID.get(i) == staff.getID()) {
+				
+				this.staffID.remove(i);
+			}
+		}
+		
+	}
+	
 	public int getID() {
 		return ID;
 	}
