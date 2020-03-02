@@ -2,8 +2,6 @@ package MainLogic;
 
 public class ProgramLoop {
 
-	// Stores view
-	private static View view;
 	// Stores controller
 	private static Controller controller;
 	
@@ -16,7 +14,7 @@ public class ProgramLoop {
 		// Initialises new model
 		Model model = new Model();
 		// Initialises view		
-		view = new View(model);
+		View view = new View();
 		// Initialises controller
 		controller = new Controller(model, view);
 		
@@ -32,60 +30,37 @@ public class ProgramLoop {
 			// Stores the users choice and will only return 1, 2 or 3
 			int userChoice = controller.selectUser();
 			
-			// Will show course director all courses 
-			// and allow teaching requirements to be set
-			// until user returns to privilege selection or quits the application
-			while(!returnToMainMenu) {
-				
-				// If course director is selected follow Course Director workflow
-				if(userChoice == 1) {
-					
-					// Display courses and ask for user input
-						
-						
-					// Listen for an respond to input
-					controller.courseDirectorOptions();
-					
-					// Else if administrator is selected follow Administrator workflow
-				} else if (userChoice == 2) {
-					
-					// Listen for an respond to input
-					controller.adminOptions();
-	
-					
-					// Else follow PTT Director workflow
-				} else {
-	
-					// Display filled teaching requests and ask for user input
-						
-						
-					// Listen for an respond to input
-					controller.pttDirectorOptions();
-				}
 			
-				// Checks if user wants to make more changes, 
-				// quit or return to the main menu and stores it
-				int choice = controller.makeAnotherChoice();
+			// Activates user menu loop based on user choice
+			switch(userChoice) {
+			
+			case 0:
+			
+				// Writes to file and ends program
+				controller.exit();
+				// Exits main loop
+				quit = true;
+			case 1:
 				
-				// If user selects to return to main exit PTT Director loop
-				if(choice == 2) {
+				// Continues until user wants to return to user select
+				while(!returnToMainMenu) {
 					
-					// Exits PTT Director loop
-					returnToMainMenu = false;
-					
-					// Else if user wants to quit exit main loop
-				} else if(choice == 3) {
-					
-					// Exits PTT Director loop
-					returnToMainMenu = false;
-					
-					// Exits main loop
-					quit = true;
-					
+					returnToMainMenu = controller.courseDirectorOptions();
 				}
+			case 2:
 				
+				// Continues until user wants to return to user select
+				while(!returnToMainMenu) {
+					
+					returnToMainMenu = controller.adminOptions();
+				}
+			case 3:
+				// Continues until user wants to return to user select
+				while(!returnToMainMenu) {
+					
+					returnToMainMenu = controller.pttDirectorOptions();
+				}
 			}
-			
 		}
 		
 	}
