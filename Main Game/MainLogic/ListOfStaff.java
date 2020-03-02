@@ -53,7 +53,7 @@ public class ListOfStaff {
 	 * @param name
 	 * @param hours
 	 */
-	public void createStaff(String name, int hours) {
+	public void createStaff(String name) {
 		
 		/*
 		 * Get next ID

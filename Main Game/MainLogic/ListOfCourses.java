@@ -76,6 +76,23 @@ public class ListOfCourses {
 	}
 	
 	/**
+	 * Method to return ArrayList of approved courses
+	 * @return ArrayList of approved courses
+	 */
+	public ArrayList<Course> findApprovedCourses(){
+		
+		ArrayList<Course> approvedCourses = new ArrayList<Course>();
+		
+		for(Course course : this.courseList) {
+			if(course.isApproved()) {
+				approvedCourses.add(course);
+			}
+		}
+		
+		return approvedCourses;
+	}
+	
+	/**
 	 * Method to return ArrayList of unapproved courses
 	 * @return ArrayList of unapproved courses
 	 */

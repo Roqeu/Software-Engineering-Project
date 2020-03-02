@@ -51,8 +51,8 @@ public class View {
      */
     public void displayCourse(Course course) {
         System.out.println("Course: " + course.getName());
-        System.out.println("Required Staff: " + course.getRequiredStaff() + " " + "Assigned Staff: " + course.getAsssignStaff());
-        System.out.println("Approved: " + course.getApproved());
+        System.out.println("Required Staff: " + course.getRequiredStaff() + " " + "Assigned Staff: " + course.getAssignedStaff());
+        System.out.println("Approved: " + course.isApproved());
         System.out.println("");
     }
 
@@ -130,7 +130,7 @@ public class View {
      */
     public void displayPTTDirectorCourseOptions(Course course) {
 
-        if (course.getApproved()) {
+        if (course.isApproved()) {
             System.out.println("1. Unapprove Course");
         } else {
             System.out.println("1. Approve Course");
