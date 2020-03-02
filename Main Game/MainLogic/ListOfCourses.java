@@ -52,7 +52,7 @@ public class ListOfCourses {
 	 * Method to add new course to courseList
 	 * @param name Course name
 	 */
-	public void createCourse(String name) {
+	public void createCourse(String name, int requiredStaff) {
 		
 		/*
 		 * Get next ID
@@ -72,7 +72,7 @@ public class ListOfCourses {
 		}
 		
 		// Add new course to list
-		this.courseList.add(new Course(name, nextID));
+		this.courseList.add(new Course(nextID, name, requiredStaff));
 	}
 	
 	/**
@@ -84,7 +84,7 @@ public class ListOfCourses {
 		ArrayList<Course> unapprovedCourses = new ArrayList<Course>();
 		
 		for(Course course : this.courseList) {
-			if(true) {
+			if(!course.isApproved()) {
 				unapprovedCourses.add(course);
 			}
 		}
@@ -123,12 +123,8 @@ public class ListOfCourses {
 	 * @param req number of staff required
 	 */
 	public void assignCourseRequirements(Course course, int req) {
-
-		/*
-		 * !!!!!!
-		 * Add logic to set requirements
-		 * !!!!!!
-		 */
+		
+		course.setRequirements(req);
 		
 	}
 	
@@ -145,15 +141,12 @@ public class ListOfCourses {
 	 * @param course 
 	 * @param staff
 	 */
-	public void train(Course course, Staff staff) {
+	public void train(Staff staff) {
 		
-		/*
-		 * !!!!!!
-		 * Add call to course to add training
-		 * !!!!!!
-		 */
+		staff.setTrained(true);
 		
 	}
+	
 	/**
 	 * Getter for courseList
 	 * @return courseList

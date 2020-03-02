@@ -140,9 +140,9 @@ public class Model {
 	 * Create new course
 	 * @param name course name
 	 */
-	public void  createCourse(String name) {
+	public void  createCourse(String name, int requiredHours) {
 		
-		courseList.createCourse(name);
+		courseList.createCourse(name, requiredHours);
 		
 	}
 	
@@ -203,8 +203,8 @@ public class Model {
 	 * @param course
 	 * @param staff
 	 */
-	public void train(Course course, Staff staff) {
-		courseList.train(course, staff);
+	public void train(Staff staff) {
+		courseList.train(staff);
 	}
 	
 	/**
