@@ -9,9 +9,9 @@ public class TestModel {
 		/*
 		 * Create some staff and print them
 		 */
-		model.createStaff("Bob", 20);
-		model.createStaff("Rachel", 16);
-		model.createStaff("Steve", 8);
+		model.createStaff("Bob");
+		model.createStaff("Rachel");
+		model.createStaff("Steve");
 		
 		System.out.println("Staff:");
 		for(Staff staff : model.returnStaffList()) {

@@ -80,9 +80,9 @@ public class Model {
 	 * @param name staff member name
 	 * @param hours number of hours available
 	 */
-	public void createStaff(String name, int hours) {
+	public void createStaff(String name) {
 		
-		this.staffList.createStaff(name, hours);
+		this.staffList.createStaff(name);
 		
 	}
 	
@@ -153,6 +153,14 @@ public class Model {
 	 */
 	public Course findCourse(int ID) {
 		return this.courseList.find(ID);
+	}
+	
+	/**
+	 * Method to return ArrayList of approved courses
+	 * @return ArrayList of approved courses
+	 */
+	public ArrayList<Course> findApprovedCourses(){
+		return this.courseList.findApprovedCourses();
 	}
 	
 	/**
