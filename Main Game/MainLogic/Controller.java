@@ -56,19 +56,16 @@ public class Controller {
 		// Stores user input
 		int selected = userInput.nextInt();
 		
-		// Stores list of courses
-		ArrayList<Course> courseList = model.getCourseList();
-		
 		// Displays course director options
-		view.displayCourses(courseList);
+		view.courseDirectorOptions();
 		
 		// Will keep asking for input until valid input received
-		while(selected < 0 || selected > courseList.size() + 1) {
+		while(selected < 0 || selected > 2) {
 			
 			// Displays wrong input message
 			view.incorrectInput();
-			// Displays choices
-			view.displayCourses(courseList);
+			// Displays course director options
+			view.courseDirectorOptions();
 			
 			// Stores user input
 			selected = userInput.nextInt();
@@ -79,17 +76,16 @@ public class Controller {
 			
 			return false;
 			// If user selects to add new course
-		} else if (selected == courseList.size() + 1) {
+		} else if (selected == 1) {
 			
-			createCourse();
+			unapprovedCourses();
 			return true;
 			// Else let user assign requirements
 		} else {
 			
-			assignRequirements(courseList.get(selected - 1));
+			createCourse();
+			return true;
 		}
-		
-		return true;
 	}
 	
 	/**
@@ -124,16 +120,16 @@ public class Controller {
 			return false;
 		// If 1 selected display staff
 		case 1:
-			view.displayStaff(model.getStaffList());
+			view.displayStaff(model.returnStaffList());
 		// If 2 selected enter course assignment menu
 		case 2:
-			fillRequirements(model.findRequirements());
+			fillRequirements(model.findUnapprovedCourses());
 		// If 3 selected enter add staff menu
 		case 3:
 			createNewStaffMember();
 		// If 4 selected show untrained staff
 		case 4:
-			view.displayUntrainedStaff(model.findUntrainedStaff());
+			train();
 		}
 		
 		return true;
@@ -145,22 +141,19 @@ public class Controller {
 	 */
 	public boolean pttDirectorOptions() {
 		
-		// Stores list of course
-		ArrayList<Course> courseList = model.getCourseList();
-		
-		// Displays courses
-		view.displayCourses(courseList);
+		// Displays ptt director options
+		view.pttDirectorOptions();
 		
 		// Stores user input
 		int selected = userInput.nextInt();
 		
 		// Loops until user input is valid
-		while(selected < 0 || selected > courseList.size()) {
+		while(selected < 0 || selected > 2) {
 			
 			// Displays wrong input message
 			view.incorrectInput();
-			// Displays courses
-			view.displayCourses(courseList);
+			// Displays course director options
+			view.pttDirectorOptions();
 			// Stores user input
 			selected = userInput.nextInt();
 		}
@@ -169,18 +162,51 @@ public class Controller {
 		if(selected == 0 ) {
 			
 			return false;
-		} else if(selected == 1) {
+		} else if(selected ==  1) {
+			
+			// Displays requirement approval menu
+			approveCourse();
+		} else {
 			
 			// If user selected to view approved courses show approved courses
-			unapproveCourse();
+			unapproveCourse();			
 		}
-		
-		// Displays requirement approval menu
-		approveRequirements(courseList.get(selected - 1));
 		
 		return true;
 	}
 	
+	/**
+	 * Shows courses without requirements and allows user to add requirements
+	 */
+	private static void unapprovedCourses() {
+		
+		// Stores courses without requirements
+		ArrayList<Course> courses = model.findUnapprovedCourses();
+		// Displays courses
+		view.displayCourses(courses);
+		// Stores user input
+		int selected = userInput.nextInt();
+		
+		// Loops until valid input is selected
+		while(selected < 0 || selected > courses.size()) {
+					
+			// Displays wrong input message
+			view.incorrectInput();
+			// Displays courses
+			view.displayCourses(courses);
+			// Stores user input
+			selected = userInput.nextInt();
+		}
+		
+		// If user chooses to exit, return false
+		if(selected == 0 ) {
+			
+			return;
+		}
+		
+		// Allows user to assign course requirements
+		assignRequirements(courses.get(selected -1));
+	}
 	/**
 	 * Allows course director to assign requirements to a given course
 	 */
@@ -199,7 +225,7 @@ public class Controller {
 		}
 		
 		// Assigns requirement
-		model.assignRequirement(course, selected);
+		model.assignCourseRequirements(course, selected);
 	}
 	
 	/**
@@ -208,12 +234,12 @@ public class Controller {
 	private static void createCourse() {
 		
 		// Asks user to input a course name
-		view.courseName();
+		view.createCourse();
 		// Stores user input
 		String name = userInput.nextLine();
 		
 		// Ask user to input course requirements
-		view.askRequirements();
+		view.askRequirement();
 		// Stores user input
 		int requirement = userInput.nextInt();
 		
@@ -231,7 +257,7 @@ public class Controller {
 		String name = userInput.nextLine();
 		
 		// Calls model to create staff member
-		model.createNewStaff(name);
+		model.createStaff(name);
 	}
 	
 	/**
@@ -270,13 +296,51 @@ public class Controller {
 	}
 	
 	/**
+	 * Allows admin to assign staff to training
+	 */
+	private static void train() {
+		
+		// Stores untrained staff
+		ArrayList<Staff> untrainedStaff = model.UntrainedStaff();
+		
+		// Displays untrained staff
+		view.displayStaff(untrainedStaff);
+		// Asks user to select a staff member to train
+		view.trainStaffOptions();
+		
+		// Stores user input
+		int selected = userInput.nextInt();
+		
+		// Loop until user selects valid input
+		while(selected < 0 || selected > untrainedStaff.size()) {
+			
+			// Displays wrong input message
+			view.incorrectInput();
+			// Displays untrained staff
+			view.displayStaff(untrainedStaff);
+			// Asks user to select a staff member to train
+			view.trainStaffOptions();
+			// Stores user input
+			selected = userInput.nextInt();			
+		}
+		
+		// If user selects to exit return false
+		if(selected == 0) {
+			
+			return;
+		}
+		
+		model.train(untrainedStaff.get(selected - 1));
+	}
+	
+	/**
 	 * Displays the course requirements and add/remove staff options
 	 * @param Course
 	 */
 	private static void courseOptions(Course course) {
 		
 		// Displays course options
-		view.courseOptions(course);
+		view.displayCourse(course);
 		
 		// Stores user input
 		int selected = userInput.nextInt();
@@ -287,7 +351,7 @@ public class Controller {
 			// Displays wrong input message
 			view.incorrectInput();
 			// Displays courses
-			view.displayRequirements(course);
+			view.displayCourse(course);
 			// Stores user input
 			selected = userInput.nextInt();			
 		}
@@ -309,7 +373,7 @@ public class Controller {
 	private static void assignStaff(Course course) {
 		
 		// Stores available staff
-		ArrayList<Staff> availableStaff = model.findAvailableStaff();
+		ArrayList<Staff> availableStaff = model.AvailableStaff();
 		
 		// Shows available staff to assign
 		view.displayStaff(availableStaff);
@@ -323,7 +387,7 @@ public class Controller {
 			// Displays wrong input message
 			view.incorrectInput();
 			// Displays courses
-			view.displayStaffList(availableStaff);
+			view.displayStaff(availableStaff);
 			// Stores user input
 			selected = userInput.nextInt();
 		}
@@ -345,10 +409,10 @@ public class Controller {
 	private static void removeStaff(Course course) {
 		
 		// Stores staff associated with this course
-		ArrayList<Staff> staff = model.getAssignedStaff(course);
+		ArrayList<Staff> staff = model.UnavailableStaff();
 		
 		// Displays staff
-		view.displayStaffList(staff);
+		view.displayStaff(staff);
 		
 		// Stores user input
 		int selected = userInput.nextInt();
@@ -371,61 +435,19 @@ public class Controller {
 		}
 		
 		// Remove selected staff from selected course
-		model.removeStaff(course, staff.get(selected - 1));
+		model.removeStaffFromCourse(course, staff.get(selected - 1));
 	}
 	
 	/**
 	 * Allows the PTT Director to approve courses
-	 * @param course
 	 */
-	private static void approveRequirements(Course course) {
-		
-		// Asks user to approve a course requirement
-		view.approveRequirement(course);
-		
-		// Stores user input
-		int selected = userInput.nextInt();
-		
-		// Loops until user enters valid input
-		while(selected < 0 || selected > 1) {
-			
-			// Displays wrong input message
-			view.incorrectInput();
-			// Asks user to approve a course requirement
-			view.approveRequirement(course);						
-			// Stores user input
-			selected = userInput.nextInt();
-		}
-		
-		// If user selects to exit return false
-		if(selected == 0) {
-			
-			return;
-		} else if(selected == 1) {
-			
-			// Requirement approved
-			model.giveRequestApproval(course, true);
-		}
-	}
-	
-	/**
-	 * Allows PTT Director to view approved courses and unapprove if needed
-	 */
-	private static void unapproveCourse() {
+	private static void approveCourse() {
 		
 		// Gets approved courses
-		ArrayList<Course> approvedCourses = model.getApprovedCourses();
-		
-		// If there are no approved course tell user and exit
-		if(approvedCourses.size() == 0) {
-			
-			view.noApprovedCourses();
-			
-			return;
-		}
+		ArrayList<Course> unapprovedCourses = model.findUnapprovedCourses();
 		
 		// Shows approved courses and asks for user input
-		view.displayApprovedCourses(approvedCourses);
+		view.displayCourses(unapprovedCourses);
 		
 		// Stores user input
 		int selected = userInput.nextInt();
@@ -436,7 +458,42 @@ public class Controller {
 			// Displays wrong input message
 			view.incorrectInput();
 			// Asks user to approve a course requirement
-			view.displayApprovedCourses(approvedCourses);						
+			view.displayCourses(unapprovedCourses);						
+			// Stores user input
+			selected = userInput.nextInt();
+		}
+				
+		// If user selects to exit return false
+		if(selected == 0) {
+					
+			return;
+		}
+			
+		// Requirement approved
+		model.giveRequestApproval(unapprovedCourses.get(selected - 1), true);
+	}
+	
+	/**
+	 * Allows PTT Director to view approved courses and unapprove if needed
+	 */
+	private static void unapproveCourse() {
+		
+		// Gets approved courses
+		ArrayList<Course> approvedCourses = model.getApprovedCourses();
+		
+		// Shows approved courses and asks for user input
+		view.displayCourses(approvedCourses);
+		
+		// Stores user input
+		int selected = userInput.nextInt();
+		
+		// Loops until user enters valid input
+		while(selected < 0 || selected > 1) {
+					
+			// Displays wrong input message
+			view.incorrectInput();
+			// Asks user to approve a course requirement
+			view.displayCourses(approvedCourses);						
 			// Stores user input
 			selected = userInput.nextInt();
 		}
