@@ -16,8 +16,8 @@ public class Staff {
 	public Staff(String name,int ID, boolean available, boolean trained) {
 		this.name = name;
 		this.ID = ID;
-		this.available = available;
-		this.trained = trained;
+		this.available = false;
+		this.trained = false;
 	}
 
 	public int getID() {
