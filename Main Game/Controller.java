@@ -120,7 +120,7 @@ public class Controller {
 			// If 1 selected display staff
 		} else if(selected == 1) {
 			
-			view.displayStaff(model.returnStaffList()); // Add if statement to display empty array message
+			staffViewMenu();
 			// If 2 selected enter course assignment menu
 		} else if(selected == 2) {
 			
@@ -247,6 +247,26 @@ public class Controller {
 		int requirement = userInput.nextInt();
 		
 		model.createCourse(name, requirement);
+	}
+	
+	/**
+	 * Sets up staff view
+	 */
+	private static void staffViewMenu() {
+		
+		// Displays staff view and allows exit
+		view.displayStaff(model.returnStaffList());
+		// Stores user input
+		int selected = userInput.nextInt();
+		
+		// Loops until valid input is selected
+		while(selected != 0) {
+					
+			// Displays wrong input message
+			view.incorrectInput();
+			// Stores user input
+			selected = userInput.nextInt();
+		}
 	}
 	
 	/**
