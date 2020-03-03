@@ -1,4 +1,4 @@
-package MainLogic;
+
 
 public class ProgramLoop {
 
@@ -31,30 +31,28 @@ public class ProgramLoop {
 			int userChoice = controller.selectUser();
 			
 			
-			// Activates user menu loop based on user choice
-			switch(userChoice) {
-			
-			case 0:
+			// Activates user menu loop based on user choice			
+			if(userChoice == 0) {
 			
 				// Writes to file and ends program
 				controller.exit();
 				// Exits main loop
 				quit = true;
-			case 1:
+			} else if(userChoice == 1) {
 				
 				// Continues until user wants to return to user select
 				while(!returnToMainMenu) {
 					
 					returnToMainMenu = controller.courseDirectorOptions();
 				}
-			case 2:
+			} else if(userChoice == 2) {
 				
 				// Continues until user wants to return to user select
 				while(!returnToMainMenu) {
 					
 					returnToMainMenu = controller.adminOptions();
 				}
-			case 3:
+			} else {
 				// Continues until user wants to return to user select
 				while(!returnToMainMenu) {
 					

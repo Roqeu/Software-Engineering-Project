@@ -1,4 +1,3 @@
-package MainLogic;
 
 import java.util.ArrayList;
 
