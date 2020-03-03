@@ -132,6 +132,7 @@ public class View {
     public void trainStaffOptions() {
         newLine();
         System.out.println("Please select the ID of a member of staff to train:");
+        exit();
     }
     /**
      * Method that asks for Staff ID to be entered or removed.
