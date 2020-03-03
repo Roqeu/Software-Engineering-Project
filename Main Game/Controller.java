@@ -490,7 +490,42 @@ public class Controller {
 	private static void approveCourse() {
 		
 		// Gets approved courses
-		ArrayList<Course> unapprovedCourses = model.findUnapprovedCourses();
+		ArrayList<Course> filledCourses = model.findFullCourses();
+		
+		// Shows approved courses and asks for user input
+		view.displayCourses(filledCourses);
+		
+		// Stores user input
+		int selected = userInput.nextInt();
+		
+		// Loops until user enters valid input
+		while(selected < 0 || selected > 1) {
+					
+			// Displays wrong input message
+			view.incorrectInput();
+			// Asks user to approve a course requirement
+			view.displayCourses(filledCourses);						
+			// Stores user input
+			selected = userInput.nextInt();
+		}
+				
+		// If user selects to exit return false
+		if(selected == 0) {
+					
+			return;
+		}
+			
+		// Requirement approved
+		model.giveRequestApproval(filledCourses.get(selected - 1), true);
+	}
+	
+	/**
+	 * Allows PTT Director to view approved courses and unapprove if needed
+	 */
+	private static void unapproveCourse() {
+		
+		// Gets approved courses
+		ArrayList<Course> unapprovedCourses = model.findApprovedCourses();
 		
 		// Shows approved courses and asks for user input
 		view.displayCourses(unapprovedCourses);
@@ -514,44 +549,9 @@ public class Controller {
 					
 			return;
 		}
-			
-		// Requirement approved
-		model.giveRequestApproval(unapprovedCourses.get(selected - 1), true);
-	}
-	
-	/**
-	 * Allows PTT Director to view approved courses and unapprove if needed
-	 */
-	private static void unapproveCourse() {
-		
-		// Gets approved courses
-		ArrayList<Course> approvedCourses = model.findApprovedCourses();
-		
-		// Shows approved courses and asks for user input
-		view.displayCourses(approvedCourses);
-		
-		// Stores user input
-		int selected = userInput.nextInt();
-		
-		// Loops until user enters valid input
-		while(selected < 0 || selected > 1) {
-					
-			// Displays wrong input message
-			view.incorrectInput();
-			// Asks user to approve a course requirement
-			view.displayCourses(approvedCourses);						
-			// Stores user input
-			selected = userInput.nextInt();
-		}
-				
-		// If user selects to exit return false
-		if(selected == 0) {
-					
-			return;
-		}
 				
 		// Unapproves Course
-		model.giveRequestApproval(approvedCourses.get(selected - 1), false);
+		model.giveRequestApproval(unapprovedCourses.get(selected - 1), false);
 	}
 	
 	/**

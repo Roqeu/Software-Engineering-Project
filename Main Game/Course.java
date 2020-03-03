@@ -38,6 +38,7 @@ public class Course {
 	
 	public void addStaff(Staff staff) {
 		this.staffID.add(staff.getID());
+		assignedStaff++;
 		
 	}
 	
