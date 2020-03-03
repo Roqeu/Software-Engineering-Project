@@ -44,13 +44,27 @@ public class Course {
 	public void removeStaff(Staff staff) {
 		
 		for (int i=0;i<staffID.size();i++) {
-			
+
 			if (staffID.get(i) == staff.getID()) {
 				
 				this.staffID.remove(i);
 			}
 		}
 		
+	}
+	
+	public boolean changeRequirements(int newReq ) {
+			
+			if (this.assignedStaff > newReq ) {
+				
+				return false;
+			}else {
+				
+				this.requiredStaff = newReq;
+				
+				return true;
+			}
+			
 	}
 	
 	public int getID() {
@@ -92,6 +106,10 @@ public class Course {
 	public void setApproved(boolean approved) {
 		this.approved = approved;
 	}
+		
+		
+	}
+	
 
-}
+
 
