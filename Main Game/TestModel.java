@@ -35,8 +35,8 @@ public class TestModel {
 		 * Find a staff members to add
 		 */
 		
-		Staff staffToAdd1 = model.findStaff(0);
-		Staff staffToAdd2 = model.findStaff(2);
+		Staff staffToAdd1 = model.findStaff(1);
+		Staff staffToAdd2 = model.findStaff(3);
 		
 		/*
 		 * Find a course
@@ -69,9 +69,6 @@ public class TestModel {
 		/*
 		 * Check staff in course after removal
 		 */
-		
-		
-		
 		System.out.println("\nStaff in course after removal:");
 		for(int ID : courseToBeAddedTo.getStaffID()) {
 			System.out.println(ID);
