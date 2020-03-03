@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * 	public ArrayList<Course> findFullCourses()
  * 	public void addStaffToCourse(Course course, Staff staff)
  * 	public void removeStaffFromCourse(Course course, Staff staff)
- * 	public void assignCourseRequirements(Course course, int req)
+ * 	public boolean assignCourseRequirements(Course course, int req)
  * 	public void train(Course course, Staff staff)
  * 	public void giveRequestApproval(Course course, boolean approval)
  *
@@ -208,9 +208,9 @@ public class Model {
 	 * @param course
 	 * @param req number of staff required
 	 */
-	public void assignCourseRequirements(Course course, int req) {
+	public boolean assignCourseRequirements(Course course, int req) {
 
-		this.courseList.assignCourseRequirements(course, req);
+		return this.courseList.assignCourseRequirements(course, req);
 		
 	}
 	
