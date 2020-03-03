@@ -105,12 +105,12 @@ public class View {
         newLine();
         if (staffList.size() == 0) {
             System.out.println("There are no staff to display.");
-            exit();
         } else {
             for (Staff staff: staffList) {
                 System.out.println(staff);
             }
         }
+        exit();
     }
     /**
      * Method to display options for the admin after selecting a course
@@ -132,7 +132,6 @@ public class View {
     public void trainStaffOptions() {
         newLine();
         System.out.println("Please select the ID of a member of staff to train:");
-        exit();
     }
     /**
      * Method that asks for Staff ID to be entered or removed.
