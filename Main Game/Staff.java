@@ -1,4 +1,4 @@
-
+package MainLogic;
 import java.util.ArrayList;
 
 public class Staff {
@@ -11,13 +11,15 @@ public class Staff {
 	public Staff(String name, int ID) {
 		this.name = name;
 		this.ID = ID;
+		this.available = false;
+		this.trained = false;
 	}
 	
 	public Staff(String name,int ID, boolean available, boolean trained) {
 		this.name = name;
 		this.ID = ID;
-		this.available = false;
-		this.trained = false;
+		this.available = available;
+		this.trained = trained;
 	}
 
 	public int getID() {
