@@ -30,34 +30,39 @@ public class ProgramLoop {
 			// Stores the users choice and will only return 1, 2 or 3
 			int userChoice = controller.selectUser();
 			
-			
+			// Responds to user input
+			switch(userChoice) {
 			// Activates user menu loop based on user choice			
-			if(userChoice == 0) {
+			case 0:
 			
 				// Writes to file and ends program
 				controller.exit();
 				// Exits main loop
 				quit = true;
-			} else if(userChoice == 1) {
+				break;
+			case 1:
 				
 				// Continues until user wants to return to user select
 				while(!returnToMainMenu) {
 					
 					returnToMainMenu = controller.courseDirectorOptions();
 				}
-			} else if(userChoice == 2) {
+				break;
+			case 2:
 				
 				// Continues until user wants to return to user select
 				while(!returnToMainMenu) {
 					
 					returnToMainMenu = controller.adminOptions();
 				}
-			} else {
+				break;
+			case 3:
 				// Continues until user wants to return to user select
 				while(!returnToMainMenu) {
 					
 					returnToMainMenu = controller.pttDirectorOptions();
 				}
+				break;
 			}
 		}
 		

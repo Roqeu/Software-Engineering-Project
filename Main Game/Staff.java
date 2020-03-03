@@ -51,6 +51,7 @@ public class Staff {
 
 	public void setTrained(boolean trained) {
 		this.trained = trained;
+		available = trained;
 	}
 
 	public String toString() {
