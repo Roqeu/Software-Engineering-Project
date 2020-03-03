@@ -1,4 +1,4 @@
-package MainLogic;
+
 import java.util.ArrayList;
 
 /**
@@ -80,9 +80,9 @@ public class Model {
 	 * @param name staff member name
 	 * @param hours number of hours available
 	 */
-	public void createStaff(String name, int hours) {
+	public void createStaff(String name) {
 		
-		this.staffList.createStaff(name, hours);
+		this.staffList.createStaff(name);
 		
 	}
 	
@@ -140,9 +140,9 @@ public class Model {
 	 * Create new course
 	 * @param name course name
 	 */
-	public void  createCourse(String name) {
+	public void  createCourse(String name, int requiredHours) {
 		
-		courseList.createCourse(name);
+		courseList.createCourse(name, requiredHours);
 		
 	}
 	
@@ -153,6 +153,14 @@ public class Model {
 	 */
 	public Course findCourse(int ID) {
 		return this.courseList.find(ID);
+	}
+	
+	/**
+	 * Method to return ArrayList of approved courses
+	 * @return ArrayList of approved courses
+	 */
+	public ArrayList<Course> findApprovedCourses(){
+		return this.courseList.findApprovedCourses();
 	}
 	
 	/**
@@ -203,8 +211,8 @@ public class Model {
 	 * @param course
 	 * @param staff
 	 */
-	public void train(Course course, Staff staff) {
-		courseList.train(course, staff);
+	public void train(Staff staff) {
+		courseList.train(staff);
 	}
 	
 	/**

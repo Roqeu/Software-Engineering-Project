@@ -1,4 +1,3 @@
-package MainLogic;
 
 import java.util.ArrayList;
 
@@ -52,7 +51,7 @@ public class ListOfCourses {
 	 * Method to add new course to courseList
 	 * @param name Course name
 	 */
-	public void createCourse(String name) {
+	public void createCourse(String name, int requiredStaff) {
 		
 		/*
 		 * Get next ID
@@ -72,7 +71,24 @@ public class ListOfCourses {
 		}
 		
 		// Add new course to list
-		this.courseList.add(new Course(name, nextID));
+		this.courseList.add(new Course(nextID, name, requiredStaff));
+	}
+	
+	/**
+	 * Method to return ArrayList of approved courses
+	 * @return ArrayList of approved courses
+	 */
+	public ArrayList<Course> findApprovedCourses(){
+		
+		ArrayList<Course> approvedCourses = new ArrayList<Course>();
+		
+		for(Course course : this.courseList) {
+			if(course.isApproved()) {
+				approvedCourses.add(course);
+			}
+		}
+		
+		return approvedCourses;
 	}
 	
 	/**
@@ -84,7 +100,7 @@ public class ListOfCourses {
 		ArrayList<Course> unapprovedCourses = new ArrayList<Course>();
 		
 		for(Course course : this.courseList) {
-			if(true) {
+			if(!course.isApproved()) {
 				unapprovedCourses.add(course);
 			}
 		}
@@ -110,11 +126,8 @@ public class ListOfCourses {
 	 */
 	public void removeStaffFromCourse(Course course, Staff staff) {
 		
-		/*
-		 * !!!!!!
-		 * Add logic to remove staff
-		 * !!!!!!
-		 */
+		course.removeStaff(staff);
+
 	}
 	
 	/**
@@ -123,12 +136,8 @@ public class ListOfCourses {
 	 * @param req number of staff required
 	 */
 	public void assignCourseRequirements(Course course, int req) {
-
-		/*
-		 * !!!!!!
-		 * Add logic to set requirements
-		 * !!!!!!
-		 */
+		
+		course.setRequirements(req);
 		
 	}
 	
@@ -145,15 +154,12 @@ public class ListOfCourses {
 	 * @param course 
 	 * @param staff
 	 */
-	public void train(Course course, Staff staff) {
+	public void train(Staff staff) {
 		
-		/*
-		 * !!!!!!
-		 * Add call to course to add training
-		 * !!!!!!
-		 */
+		staff.setTrained(true);
 		
 	}
+	
 	/**
 	 * Getter for courseList
 	 * @return courseList
