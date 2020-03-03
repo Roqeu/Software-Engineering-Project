@@ -366,8 +366,10 @@ public class Controller {
 			return;
 		case 1:
 			assignStaff(course);
+			break;
 		case 2:
 			removeStaff(course);
+			break;
 		}
 	}
 	
@@ -413,21 +415,21 @@ public class Controller {
 	private static void removeStaff(Course course) {
 		
 		// Stores staff associated with this course
-		ArrayList<Staff> staff = model.UnavailableStaff();
+		ArrayList<Staff> unavailableStaff = model.UnavailableStaff();
 		
 		// Displays staff
-		view.displayStaff(staff);
+		view.displayStaff(unavailableStaff);
 		
 		// Stores user input
 		int selected = userInput.nextInt();
 		
 		// Loops until user enters valid input
-		while(selected < 0 || selected > staff.size()) {
+		while(selected < 0 || selected > unavailableStaff.size()) {
 			
 			// Displays wrong input message
 			view.incorrectInput();
 			// Displays courses
-			view.displayStaff(staff);
+			view.displayStaff(unavailableStaff);
 			// Stores user input
 			selected = userInput.nextInt();
 		}
@@ -439,7 +441,7 @@ public class Controller {
 		}
 		
 		// Remove selected staff from selected course
-		model.removeStaffFromCourse(course, staff.get(selected - 1));
+		model.removeStaffFromCourse(course, unavailableStaff.get(selected - 1));
 	}
 	
 	/**
