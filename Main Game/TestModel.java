@@ -1,4 +1,4 @@
-package MainLogic;
+
 
 public class TestModel {
 	public static void main(String[] args) {
@@ -9,9 +9,9 @@ public class TestModel {
 		/*
 		 * Create some staff and print them
 		 */
-		model.createStaff("Bob", 20);
-		model.createStaff("Rachel", 16);
-		model.createStaff("Steve", 8);
+		model.createStaff("Bob");
+		model.createStaff("Rachel");
+		model.createStaff("Steve");
 		
 		System.out.println("Staff:");
 		for(Staff staff : model.returnStaffList()) {
@@ -21,15 +21,15 @@ public class TestModel {
 		/*
 		 * Create some courses and print them
 		 */
-		model.createCourse("Programming");
-		model.createCourse("Databases");
+		model.createCourse("Programming", 3);
+		model.createCourse("Databases", 4);
 		
 		System.out.println("\nCourses:");
 		for(Course course : model.returnCourseList()) {
-			System.out.println(course);
+			System.out.println(course.getName());
 		}
 		
-		System.out.println("--- Adding staff ---\n");
+		System.out.println("\n--- Adding staff ---\n");
 		
 		/*
 		 * Find a staff members to add
@@ -54,8 +54,27 @@ public class TestModel {
 		 * Check staff added to course
 		 */
 		
-		System.out.println(courseToBeAddedTo);
+		System.out.println("Staff in course:");
+		for(int ID : courseToBeAddedTo.getStaffID()) {
+			System.out.println(ID);
+		}
+		
+		/*
+		 * Remove staff member 2
+		 */
+		
+		System.out.println("\n--- Removing staff member ---");
+		model.removeStaffFromCourse(courseToBeAddedTo, staffToAdd2);
+		
+		/*
+		 * Check staff in course after removal
+		 */
 		
 		
+		
+		System.out.println("\nStaff in course after removal:");
+		for(int ID : courseToBeAddedTo.getStaffID()) {
+			System.out.println(ID);
+		}
 	}
 }

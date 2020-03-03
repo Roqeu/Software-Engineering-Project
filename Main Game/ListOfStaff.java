@@ -1,4 +1,3 @@
-package MainLogic;
 
 import java.util.ArrayList;
 
@@ -53,7 +52,7 @@ public class ListOfStaff {
 	 * @param name
 	 * @param hours
 	 */
-	public void createStaff(String name, int hours) {
+	public void createStaff(String name) {
 		
 		/*
 		 * Get next ID
@@ -73,7 +72,7 @@ public class ListOfStaff {
 		
 		
 		// Add new staff member to list
-		this.staffList.add(new Staff(name, nextID, hours));
+		this.staffList.add(new Staff(name, nextID));
 		
 	}
 	
@@ -87,12 +86,7 @@ public class ListOfStaff {
 		
 		for(Staff staff : staffList) {
 			
-			/*
-			 * !!!!!!
-			 * Add condition to check for available staff
-			 * !!!!!!
-			 */
-			if(true) {
+			if(staff.isAvailable()) {
 				availableStaff.add(staff);
 			}
 			
@@ -110,12 +104,7 @@ public class ListOfStaff {
 		
 		for(Staff staff : staffList) {
 			
-			/*
-			 * !!!!!!
-			 * Add condition to check for unavailable staff
-			 * !!!!!!
-			 */
-			if(true) {
+			if(!staff.isAvailable()) {
 				unavailableStaff.add(staff);
 			}
 			
@@ -133,13 +122,7 @@ public class ListOfStaff {
 		
 		for(Staff staff : staffList) {
 			
-			/*
-			 * !!!!!!
-			 * Add condition to check for untrained staff
-			 * !!!!!!
-			 */
-			
-			if(true) {
+			if(!staff.isTrained()) {
 				untrainedStaff.add(staff);
 			}
 		}
@@ -156,13 +139,7 @@ public class ListOfStaff {
 		
 		for(Staff staff : staffList) {
 			
-			/*
-			 * !!!!!!
-			 * Add condition to check for untrained staff
-			 * !!!!!!
-			 */
-			
-			if(true) {
+			if(staff.isTrained()) {
 				trainedStaff.add(staff);
 			}
 		}

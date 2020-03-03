@@ -1,11 +1,11 @@
-package MainLogic;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TestView {
     public static void main(String[] args) {
-        // View view = new View();
+        View view = new View();
         // // Scanner myScanner = new Scanner(System.in);
 
 
@@ -68,6 +68,7 @@ public class TestView {
         // System.out.println("Exit option and incorrect input test");
         // view.incorrectInput();
         // view.exit();
+        view.displayAdminCourseOptions();
 
     }
 }
