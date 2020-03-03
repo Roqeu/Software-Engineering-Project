@@ -10,6 +10,7 @@ public class View {
      * Method to display the menu when the program is first run. 
      */
     public void selectUser() {
+        newLine();
         System.out.println("Please select user:");
         System.out.println("1. Course Director \n2. Administrator\n3. PTT Director");
         exit();
@@ -45,20 +46,28 @@ public class View {
         System.out.println("0. Exit\n");
     }
     /**
+     * Method that produces a new line
+     */
+    public void newLine() {
+        System.out.println(" ");
+    }
+    /**
      * Method to display course specific information once user has selected the course
      * @param course
      */
     public void displayCourse(Course course) {
+        newLine();
         System.out.println("Course: " + course.getName());
         System.out.println("Required Staff: " + course.getRequiredStaff() + " " + "Assigned Staff: " + course.getAssignedStaff());
         System.out.println("Approved: " + course.isApproved());
-        System.out.println("");
+        newLine();
     }
 
     /**
      * Method to display the menu options for the Course Director
      */
     public void courseDirectorOptions() {
+        newLine();
         System.out.println("Welcome Course Director, please select from the below options:");
         System.out.println("1. View Courses\n2. Create Course");
         exit();
@@ -67,12 +76,14 @@ public class View {
      * Method to display prompt for course and requirement information
      */
     public void createCourse() {
-        System.out.println("Please enter the course name, followed by the required staff on a new line:");
+        newLine();
+        System.out.println("Please enter the course name: ");
     }
     /**
      * Method to display prompt for number of required staff on course
      */
     public void askRequirement() {
+        newLine();
         System.out.println("Please enter the number of required staff for the selected course:  (Enter 0 to exit)");
     }
 
@@ -80,19 +91,26 @@ public class View {
      * Method to display menu options for Administrator 
      */
     public void adminOptions() {
+        newLine();
         System.out.println("Welcome Administrator, please select from the below options:");
         System.out.println("1. View Staff \n2. View Course Requirements \n3. Create Staff \n4. View Untrained Staff");
         exit();
     }
     /**
      * Method to iterate over ArrayList of Staff and print out each member of staff
+     * Will display empty staff list message if arraylist is empty
      * @param staffList
      */
     public void displayStaff(ArrayList<Staff> staffList) {
-        for (Staff staff: staffList) {
-            System.out.println(staff);
+        newLine();
+        if (staffList.size() == 0) {
+            System.out.println("There are no staff to display.");
+            exit();
+        } else {
+            for (Staff staff: staffList) {
+                System.out.println(staff);
+            }
         }
-        exit();
     }
     /**
      * Method to display options for the admin after selecting a course
@@ -105,20 +123,29 @@ public class View {
      * Method to display prompt for new staff member information
      */
     public void createStaff() {
+        newLine();
         System.out.println("Please enter the name of the member of staff below: ");
     }
     /**
      * Method to display prompt to enter staff ID to train
      */
     public void trainStaffOptions() {
+        newLine();
         System.out.println("Please select the ID of a member of staff to train:");
-        exit();
+    }
+    /**
+     * Method that asks for Staff ID to be entered or removed.
+     */
+    public void selectStaff() {
+        newLine();
+        System.out.println("Please enter the Staff ID to be assigned/removed:");
     }
 
     /**
      * Method to display the menu options for the PTT Director
      */
     public void pttDirectorOptions() {
+        newLine();
         System.out.println("Welcome PTT Director, please select from the below options:");
         System.out.println("1. View Courses for Approval \n2. View Approved Courses");
         exit();
