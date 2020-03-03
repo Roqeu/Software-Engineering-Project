@@ -1,9 +1,7 @@
-package MainLogic;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import com.sun.scenario.effect.Blend.Mode;
 
 public class Controller {
 
@@ -122,7 +120,7 @@ public class Controller {
 			// If 1 selected display staff
 		} else if(selected == 1) {
 			
-			view.displayStaff(model.returnStaffList());
+			view.displayStaff(model.returnStaffList()); // Add if statement to display empty array message
 			// If 2 selected enter course assignment menu
 		} else if(selected == 2) {
 			
@@ -259,7 +257,7 @@ public class Controller {
 		view.createStaff();
 		
 		// Stores staff member name
-		String name = userInput.nextLine();
+		String name = userInput.next();
 		
 		// Calls model to create staff member
 		model.createStaff(name);
@@ -311,7 +309,7 @@ public class Controller {
 		// Displays untrained staff
 		view.displayStaff(untrainedStaff);
 		// Asks user to select a staff member to train
-		view.trainStaffOptions();
+		view.trainStaffOptions(); // only display if staff members != 0
 		
 		// Stores user input
 		int selected = userInput.nextInt();
@@ -346,7 +344,8 @@ public class Controller {
 		
 		// Displays course options
 		view.displayCourse(course);
-		
+		// display course options
+		view.displayAdminCourseOptions();
 		// Stores user input
 		int selected = userInput.nextInt();
 		
@@ -517,9 +516,6 @@ public class Controller {
 	 * Closes scanner and writed to file
 	 */
 	public void exit() {
-		
-		// Closes scanner
-		userInput.close();
 		
 		// Writes state to file
 		//model.writeToFile();

@@ -1,4 +1,4 @@
-package MainLogic;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,7 +27,7 @@ public class ReadFile {
 			String name = file.next();
 			boolean available = Boolean.parseBoolean(file.next());
 			boolean trained = Boolean.parseBoolean(file.next());
-			tempStaffList.add(new Staff(id, name, available, trained)); //feed data into staff constructor into temp array
+			tempStaffList.add(new Staff(name, id, available, trained)); //feed data into staff constructor into temp array
 			file.hasNextLine();
 
 		}
