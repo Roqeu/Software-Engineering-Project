@@ -71,21 +71,27 @@ public class Controller {
 			selected = userInput.nextInt();
 		}
 		
+		// Responds to user input
+		switch(selected) {
+		
 		// If user has selected to return to user selection return false
-		if(selected == 0) {
+		case 0:
 			
 			return true;
-			// If user selects to add new course
-		} else if (selected == 1) {
+		// If 1 enter unapproved course menu (allows change of requirement)
+		case 1:
 			
 			unapprovedCourses();
-			return false;
-			// Else let user assign requirements
-		} else {
+			break;
+		// If 2 create courses
+		case 2:
 			
 			createCourse();
-			return false;
+			break;
 		}
+		
+		// Return to Course Director menu
+		return false;
 	}
 	
 	/**
@@ -113,26 +119,33 @@ public class Controller {
 			selected = userInput.nextInt();
 		}
 		
+		
+		// Responds to user input
+		switch(selected) {
 		// If 0 selected return to user selection
-		if(selected == 0) {
+		case 0:
 			
 			return true;
-			// If 1 selected display staff
-		} else if(selected == 1) {
+		// If 1 selected display staff
+		case 1:
 			
 			staffViewMenu();
-			// If 2 selected enter course assignment menu
-		} else if(selected == 2) {
+			break;
+		// If 2 enter course assignment menu
+		case 2:
 			
 			fillRequirements(model.findUnapprovedCourses());
-			// If 3 selected enter add staff menu
-		} else if(selected == 3){
+			break;
+		// If 3 enter add staff menu
+		case 3:
 			
 			createNewStaffMember();
-			// If 4 selected show untrained staff
-		} else {
+			break;
+		// If 4 show untrained staff
+		case 4:
 			
 			train();
+			break;
 		}
 		
 		return false;
@@ -161,18 +174,22 @@ public class Controller {
 			selected = userInput.nextInt();
 		}
 		
-		// If user choses to exit, return false
-		if(selected == 0 ) {
+		// Responds to user input
+		switch(selected) {
+		// If user chooses to exit, return false
+		case 0:
 			
 			return true;
-		} else if(selected ==  1) {
+		// If 1 enter approve course menu
+		case  1:
 			
-			// Displays requirement approval menu
 			approveCourse();
-		} else {
+			break;
+		// If 2 enter unapprove course menu 
+		case 2:
 			
-			// If user selected to view approved courses show approved courses
-			unapproveCourse();			
+			unapproveCourse();	
+			break;
 		}
 		
 		return false;
@@ -380,13 +397,16 @@ public class Controller {
 			selected = userInput.nextInt();			
 		}
 		
+		// Responds to user input
 		switch (selected) {
-		
+		// If user chooses to exit, return false
 		case 0:
 			return;
+		// If 1 enter assign staff menu
 		case 1:
 			assignStaff(course);
 			break;
+		// If 2 enter remove staff menu
 		case 2:
 			removeStaff(course);
 			break;
