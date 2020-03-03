@@ -87,11 +87,16 @@ public class View {
     }
     /**
      * Method to iterate over ArrayList of Staff and print out each member of staff
+     * Will display empty staff list message if arraylist is empty
      * @param staffList
      */
     public void displayStaff(ArrayList<Staff> staffList) {
-        for (Staff staff: staffList) {
-            System.out.println(staff);
+        if (staffList.size() == 0) {
+            System.out.println("There are no staff to display.");
+        } else {
+            for (Staff staff: staffList) {
+                System.out.println(staff);
+            }
         }
         exit();
     }
