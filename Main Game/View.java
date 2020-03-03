@@ -140,6 +140,12 @@ public class View {
         newLine();
         System.out.println("Please enter the Staff ID to be assigned/removed:");
     }
+    /**
+     * Method to tell user that the course they are trying to modify is full
+     */
+    public void courseFull() {
+        System.out.println("Unable to assign staff, course is full!");
+    }
 
     /**
      * Method to display the menu options for the PTT Director
