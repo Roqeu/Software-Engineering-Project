@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * 
  * Public methods:
  * 	public Staff find(int ID) 
- * 	public void createStaff(String name, int hours)
+ * 	public void createStaff(String name) 
  * 	public ArrayList<Staff> findAvailableStaff()
  * 	public ArrayList<Staff> findUnavailableStaff()
  * 	public ArrayList<Staff> findUntrainedStaff()
@@ -62,12 +62,15 @@ public class ListOfStaff {
 		
 		int nextID;
 		
+		
+		// if there are already staff start ID's from greatest ID + 1
 		if(this.staffList.size() > 0) {
 			Staff mostRecent = this.staffList.get(this.staffList.size() - 1);
 			nextID = mostRecent.getID() + 1;
 		}
 		else {
-			nextID = 0;
+			// Start IDs at 1
+			nextID = 1;
 		}
 		
 		

@@ -88,11 +88,6 @@ public class Course {
 	}
 
 	
-	public void setRequirements(int requirements) {
-		this.requiredStaff = requirements;
-		
-	}
-	
 	public int getRequirements() {
 		return this.requiredStaff;
 		
