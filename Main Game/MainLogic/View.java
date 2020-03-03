@@ -30,6 +30,7 @@ public class View {
                 System.out.println(selectNum+". "+ course.getName());
                 selectNum++;
             }
+            
         }
         exit();
     }
@@ -53,7 +54,7 @@ public class View {
         System.out.println("Course: " + course.getName());
         System.out.println("Required Staff: " + course.getRequiredStaff() + " " + "Assigned Staff: " + course.getAssignedStaff());
         System.out.println("Approved: " + course.isApproved());
-        System.out.println("");
+        System.out.println(" ");
     }
 
     /**
@@ -114,6 +115,12 @@ public class View {
     public void trainStaffOptions() {
         System.out.println("Please select the ID of a member of staff to train:");
         exit();
+    }
+    /**
+     * Method that asks for Staff ID to be entered or removed.
+     */
+    public void selectStaff() {
+        System.out.println("Please enter the Staff ID to be assigned/removed:");
     }
 
     /**
