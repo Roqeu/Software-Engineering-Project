@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *  public ArrayList<Course> findFullCourses()
  *  public void addStaffToCourse(Course course, Staff staff)
  *  public void removeStaffFromCourse(Course course, Staff staff)
- *  public void assignCourseRequirements(Course course, int req)
+ *  public boolean assignCourseRequirements(Course course, int req)
  *  public void giveRequestApproval(Course course, boolean approval)
  *  public void train(Staff staff)
  *  public ArrayList<Course> getCourseList()
@@ -154,9 +154,9 @@ public class ListOfCourses {
 	 * @param course
 	 * @param req number of staff required
 	 */
-	public void assignCourseRequirements(Course course, int req) {
+	public boolean assignCourseRequirements(Course course, int req) {
 		
-		course.changeRequirements(req);
+		return course.changeRequirements(req);
 		
 	}
 	
