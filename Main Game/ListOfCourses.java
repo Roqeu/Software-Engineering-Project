@@ -7,13 +7,15 @@ import java.util.ArrayList;
  *
  * Public methods:
  *  public Course find(int ID)
- *  public void createCourse(String name)
+ *  public void createCourse(String name, int requiredStaff)
+ *  public ArrayList<Course> findApprovedCourses()
  *  public ArrayList<Course> findUnapprovedCourses()
+ *  public ArrayList<Course> findFullCourses()
  *  public void addStaffToCourse(Course course, Staff staff)
  *  public void removeStaffFromCourse(Course course, Staff staff)
  *  public void assignCourseRequirements(Course course, int req)
  *  public void giveRequestApproval(Course course, boolean approval)
- *  public void train(Course course, Staff staff)
+ *  public void train(Staff staff)
  *  public ArrayList<Course> getCourseList()
  */
 public class ListOfCourses {
@@ -109,6 +111,23 @@ public class ListOfCourses {
 	}
 	
 	/**
+	 * Method to return ArrayList of full courses
+	 * @return ArrayList of full courses
+	 */
+	public ArrayList<Course> findFullCourses(){
+		
+		ArrayList<Course> fullCourses = new ArrayList<Course>();
+		
+		for(Course course : this.courseList) {
+			if(course.checkFull()) {
+				fullCourses.add(course);
+			}
+		}
+		
+		return fullCourses;
+	}
+	
+	/**
 	 * Method to add staff to course
 	 * @param course
 	 * @param staff
@@ -137,7 +156,7 @@ public class ListOfCourses {
 	 */
 	public void assignCourseRequirements(Course course, int req) {
 		
-		course.setRequirements(req);
+		course.changeRequirements(req);
 		
 	}
 	

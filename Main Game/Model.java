@@ -14,9 +14,11 @@ import java.util.ArrayList;
  * 	public ArrayList<Staff> UntrainedStaff()
  * 	public ArrayList<Staff> StaffWithTraining()
  * 	public ArrayList<Course> returnCourseList()
- * 	public void  createCourse(String name)
+ * 	public void  createCourse(String name, int requiredHours) 
  * 	public Course findCourse(int ID)
+ * 	public ArrayList<Course> findApprovedCourses()
  * 	public ArrayList<Course> findUnapprovedCourses()
+ * 	public ArrayList<Course> findFullCourses()
  * 	public void addStaffToCourse(Course course, Staff staff)
  * 	public void removeStaffFromCourse(Course course, Staff staff)
  * 	public void assignCourseRequirements(Course course, int req)
@@ -169,6 +171,14 @@ public class Model {
 	 */
 	public ArrayList<Course> findUnapprovedCourses(){
 		return this.courseList.findUnapprovedCourses();
+	}
+	
+	/**
+	 * Method to return ArrayList of full courses
+	 * @return ArrayList of full courses
+	 */
+	public ArrayList<Course> findFullCourses(){
+		return this.courseList.findFullCourses();
 	}
 	
 	/**
