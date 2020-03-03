@@ -52,6 +52,7 @@ public class Course {
 			}
 		}
 		
+		assignedStaff--;
 	}
 	
 	public boolean changeRequirements(int newReq ) {
