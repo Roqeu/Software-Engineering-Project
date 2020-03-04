@@ -21,15 +21,15 @@ public class TestView {
         // view.displayCourses(courses);
         // view.displayCourses(courses2);
 
-        // ArrayList<Staff> staffList = new ArrayList<Staff>();
+        ArrayList<Staff> staffList = new ArrayList<Staff>();
 
-        // Staff john = new Staff("John", 1, 20);
-        // Staff dory = new Staff("Dory", 2, 13);
-        // Staff andrew = new Staff("Andrew", 3, 15);
+        Staff john = new Staff("John", 1);
+        Staff dory = new Staff("Dory", 2);
+        Staff andrew = new Staff("Andrew", 3);
 
-        // staffList.add(john);
-        // staffList.add(dory);
-        // staffList.add(andrew);
+        staffList.add(john);
+        staffList.add(dory);
+        staffList.add(andrew);
 
         // System.out.println("Select User View:");
         // view.selectUser();
@@ -68,7 +68,6 @@ public class TestView {
         // System.out.println("Exit option and incorrect input test");
         // view.incorrectInput();
         // view.exit();
-        view.displayAdminCourseOptions();
-
+        view.displayStaff(staffList);
     }
 }
