@@ -208,6 +208,11 @@ public class ListOfCourses {
 	public ArrayList<Course> getCourseList() {
 		return courseList;
 	}
+
+	public void setCourseList(ArrayList<Course> courseList) {
+		this.courseList = courseList;
+	}
+	
 	
 	
 	

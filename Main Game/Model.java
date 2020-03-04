@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * @author Andrew
  * 
  * Public Methods:
+ * 	public void writeToFile()
  * 	public ArrayList<Staff> returnStaffList()
  * 	public Staff findStaff(int ID)
  * 	public void createStaff(String name, int hours)
@@ -49,8 +50,12 @@ public class Model {
 		staffList = new ListOfStaff();
 		
 		/*
-		 *  need to add population from FileIO
+		 *  Populate from files
 		 */
+		ReadFile reader = new ReadFile();
+		
+		this.staffList.setStaffList(reader.readStaff("Main Game/Staff.txt"));
+		this.courseList.setCourseList(reader.readCourse("Main Game/Course.txt"));
 
 	}
 	
@@ -59,6 +64,18 @@ public class Model {
 	 * Methods for creating staff and using staffList
 	 * ==================================================
 	 */
+	
+	
+	
+	/**
+	 * Write staff and course lists to file
+	 */
+	public void writeToFile() {
+		WriteFile writer = new WriteFile();
+		
+		writer.staffToFile("Main Game/Staff.txt", this.staffList.getStaffList());
+		writer.courseToFile("Main Game/Course.txt", this.courseList.getCourseList());
+	}
 	
 	
 	/**
