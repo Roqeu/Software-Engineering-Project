@@ -156,6 +156,10 @@ public class ListOfStaff {
 	public ArrayList<Staff> getStaffList() {
 		return staffList;
 	}
+
+	public void setStaffList(ArrayList<Staff> staffList) {
+		this.staffList = staffList;
+	}
 	
 	
 
