@@ -168,6 +168,7 @@ public class ListOfCourses {
 	public void removeStaffFromCourse(Course course, Staff staff) {
 		
 		course.removeStaff(staff);
+		staff.setAvailable(true);
 
 	}
 	

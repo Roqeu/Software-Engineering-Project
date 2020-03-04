@@ -75,6 +75,7 @@ public class Course {
 	
 	public void addStaff(Staff staff) {
 		this.staffID.add(staff.getID());
+		this.assignedStaff = this.staffID.size();
 		
 	}
 	
@@ -93,6 +94,8 @@ public class Course {
 				this.staffID.remove(i);
 			}
 		}
+		
+		this.assignedStaff = this.staffID.size();
 		
 	}
 	
