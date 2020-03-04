@@ -42,21 +42,22 @@ public class WriteFile {
 	 * @param tempCourseArray arrayList of courses to be committed to file
 	 */
 	public void courseToFile(String destination, ArrayList<Course> tempCourseArray) {
-		
+		String builder = " ";
+		String Staff = " ";
 
 		try {
 			FileWriter writer = new FileWriter(destination);
 			for (Course course : tempCourseArray) {
-				String builder = " ";
-				builder += course.getID() + " " + course.getName() + " " + course.isApproved()
-						+ " " + course.getRequiredStaff() + " " + course.getAssignedStaff() + " " + builder;
+				builder = " ";
+				 builder = + course.getID() + " " + course.getName() + " " + course.isApproved()
+						+ " " + course.getRequiredStaff() + " " + course.getAssignedStaff() + builder;
+				        
 				        
 				for (int id : course.getStaffID()) {
 					builder += id + " ";
 				}
-				
 				writer.write(builder + System.lineSeparator());
-				
+
 			}
 			writer.close();
 		} catch (IOException e) {
