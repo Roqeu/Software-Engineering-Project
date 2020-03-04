@@ -1,6 +1,33 @@
 
 import java.util.ArrayList;
 
+/**
+ * This is the view class for our application. It takes input from the controller and displays the menu options or content of the input.
+ * @author John Desbois 2475229D
+ * 
+ * Public Methods: 
+ * public void selectUser()
+ * public void displayCourses(ArrayList<Course> courses)
+ * public void incorrectInput() 
+ * public void exit()
+ * public void newLine()
+ * public void displayCourse(Course course)
+ * public void courseDirectorOptions()
+ * public void createCourse()
+ * public void askRequirement()
+ * public void adminOptions()
+ * public void displayStaff(ArrayList<Staff> staffList) 
+ * public void staffProfile(Staff staff)
+ * public void displayAdminCourseOptions()
+ * public void createStaff()
+ * public void trainStaffOptions()
+ * public void selectStaff()
+ * public void courseFull()
+ * public void pttDirectorOptions()
+ * public void displayPTTDirectorCourseOptions(Course course)
+ * 
+ */
+
 public class View {
     /**
      * Contstructor
@@ -105,12 +132,22 @@ public class View {
         newLine();
         if (staffList.size() == 0) {
             System.out.println("There are no staff to display.");
-            exit();
         } else {
+            int selectNum = 1;
             for (Staff staff: staffList) {
-                System.out.println(staff);
+                System.out.println(selectNum + ": " + staff);
+                selectNum++;
             }
         }
+        exit();
+    }
+    /**
+     * Method to display the content of the staff object
+     */
+    public void staffProfile(Staff staff) {
+        newLine();
+        System.out.println(staff + "Trained: " + staff.isTrained());
+        exit();
     }
     /**
      * Method to display options for the admin after selecting a course
@@ -139,6 +176,12 @@ public class View {
     public void selectStaff() {
         newLine();
         System.out.println("Please enter the Staff ID to be assigned/removed:");
+    }
+    /**
+     * Method to tell user that the course they are trying to modify is full
+     */
+    public void courseFull() {
+        System.out.println("Unable to assign staff, course is full!");
     }
 
     /**
