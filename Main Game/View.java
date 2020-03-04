@@ -106,10 +106,20 @@ public class View {
         if (staffList.size() == 0) {
             System.out.println("There are no staff to display.");
         } else {
+            int selectNum = 1;
             for (Staff staff: staffList) {
-                System.out.println(staff);
+                System.out.println(selectNum + ": " + staff);
+                selectNum++;
             }
         }
+        exit();
+    }
+    /**
+     * Method to display the content of the staff object
+     */
+    public void staffProfile(Staff staff) {
+        newLine();
+        System.out.println(staff + "Trained: " + staff.isTrained());
         exit();
     }
     /**
