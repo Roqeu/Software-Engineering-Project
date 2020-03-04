@@ -1,0 +1,5 @@
+ John 1 false true
+ Aaron 2 true true
+ Rebecca 3 false true
+ Mike 4 false true
+ Andrew 5 false true
