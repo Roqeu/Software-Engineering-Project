@@ -167,7 +167,6 @@ public class Course {
 	 */
 
 	
-<<<<<<< HEAD
 	public void setRequirements(int requirements) {
 		this.requiredStaff = requirements;
 		
@@ -178,8 +177,6 @@ public class Course {
 	 * @return required staff
 	 */
 	
-=======
->>>>>>> 0b3f13a866f75c50ef931f61d53ab45c4fbd598c
 	public int getRequirements() {
 		return this.requiredStaff;
 		

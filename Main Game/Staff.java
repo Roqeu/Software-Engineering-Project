@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 
 /**
@@ -15,9 +14,6 @@
  *public void setTrained(boolean trained) 
  *public String toString
  */
-=======
-import java.util.ArrayList;
->>>>>>> 0b3f13a866f75c50ef931f61d53ab45c4fbd598c
 
 public class Staff {
 	
