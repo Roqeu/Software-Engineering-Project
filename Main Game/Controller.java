@@ -1,8 +1,19 @@
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Controller class for teaching requirements program
+ * @author Aaron Callaghan
+ *
+ * Public methods:
+ * 	public void Controller(Model m, View v) <br>
+ * 	public int selectUser() <br>
+ * 	public boolean courseDirectorOptions() <br>
+ * 	public boolean adminOptions() <br> 
+ * 	public boolean pttDirectorOptions() <br>
+ * 	public void exit()
+ * 
+ */
 public class Controller {
 
 	// Stores model
@@ -81,7 +92,7 @@ public class Controller {
 		// If 1 enter unapproved course menu (allows change of requirement)
 		case 1:
 			
-			unapporvedCourses();
+			unapprovedCourses();
 			break;
 		// If 2 create courses
 		case 2:
@@ -198,7 +209,7 @@ public class Controller {
 	/**
 	 * Shows courses without requirements and allows user to add requirements
 	 */
-	private static void unapporvedCourses() {
+	private static void unapprovedCourses() {
 		
 		// Stores courses without requirements
 		ArrayList<Course> courses = model.findUnapprovedCourses();
@@ -571,6 +582,6 @@ public class Controller {
 	public void exit() {
 		
 		// Writes state to file
-		//model.writeToFile();
+		model.writeToFile();
 	}
 }

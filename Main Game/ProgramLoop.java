@@ -1,4 +1,10 @@
-
+/**
+ * Controller class for teaching requirements program
+ * @author Aaron Callaghan
+ *
+ *	public methods:
+ *		public static void main(String[] args0)
+ */
 
 public class ProgramLoop {
 
