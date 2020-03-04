@@ -41,8 +41,9 @@ public class Controller {
 		 
 		// Displays user selection screen
 		view.selectUser();
+		
 		// Stores user input
-		int selected = userInput.nextInt();
+		int selected = validInt();
 				
 		// If user does not select a valid input
 		// ask for a valid input and store input
@@ -52,7 +53,7 @@ public class Controller {
 			view.incorrectInput();
 			
 			// Stores new input
-			selected = userInput.nextInt();
+			selected = validInt();
 		}
 				
 		return selected;
@@ -68,7 +69,7 @@ public class Controller {
 		view.courseDirectorOptions();
 		
 		// Stores user input
-		int selected = userInput.nextInt();
+		int selected = validInt();
 		
 		// Will keep asking for input until valid input received
 		while(selected < 0 || selected > 2) {
@@ -79,7 +80,7 @@ public class Controller {
 			view.courseDirectorOptions();
 			
 			// Stores user input
-			selected = userInput.nextInt();
+			selected = validInt();
 		}
 		
 		// Responds to user input
@@ -118,7 +119,7 @@ public class Controller {
 		view.adminOptions();
 		
 		// Stores user selection
-		int selected = userInput.nextInt();
+		int selected = validInt();
 		
 		while(selected < 0 || selected > 4) {
 			
@@ -127,7 +128,7 @@ public class Controller {
 			// Displays choices
 			view.adminOptions();
 			
-			selected = userInput.nextInt();
+			selected = validInt();
 		}
 		
 		
@@ -172,7 +173,7 @@ public class Controller {
 		view.pttDirectorOptions();
 		
 		// Stores user input
-		int selected = userInput.nextInt();
+		int selected = validInt();;
 		
 		// Loops until user input is valid
 		while(selected < 0 || selected > 2) {
@@ -182,7 +183,7 @@ public class Controller {
 			// Displays course director options
 			view.pttDirectorOptions();
 			// Stores user input
-			selected = userInput.nextInt();
+			selected = validInt();;
 		}
 		
 		// Responds to user input
@@ -216,7 +217,7 @@ public class Controller {
 		// Displays courses
 		view.displayCourses(courses);
 		// Stores user input
-		int selected = userInput.nextInt();
+		int selected = validInt();;
 		
 		// Loops until valid input is selected
 		while(selected < 0 || selected > courses.size()) {
@@ -226,7 +227,7 @@ public class Controller {
 			// Displays courses
 			view.displayCourses(courses);
 			// Stores user input
-			selected = userInput.nextInt();
+			selected = validInt();;
 		}
 		
 		// If user chooses to exit, return false
@@ -247,7 +248,7 @@ public class Controller {
 		view.askRequirement();
 		
 		// Stores user input
-		int selected = userInput.nextInt();
+		int selected = validInt();;
 		
 		// If user chooses to exit, return false
 		if(selected == 0) {
@@ -276,7 +277,7 @@ public class Controller {
 		// Ask user to input course requirements
 		view.askRequirement();
 		// Stores user input
-		int requirement = userInput.nextInt();
+		int requirement = validInt();;
 		
 		model.createCourse(name, requirement);
 	}
@@ -289,7 +290,7 @@ public class Controller {
 		// Displays staff view and allows exit
 		view.displayStaff(model.returnStaffList());
 		// Stores user input
-		int selected = userInput.nextInt();
+		int selected = validInt();;
 		
 		// Loops until valid input is selected
 		while(selected != 0) {
@@ -297,7 +298,7 @@ public class Controller {
 			// Displays wrong input message
 			view.incorrectInput();
 			// Stores user input
-			selected = userInput.nextInt();
+			selected = validInt();;
 		}
 	}
 	
@@ -325,7 +326,7 @@ public class Controller {
 		view.displayCourses(requirements);
 		
 		// Stores user selection
-		int selected = userInput.nextInt();
+		int selected = validInt();;
 		
 		// Loops until valid input is selected
 		while(selected < 0 || selected > requirements.size()) {
@@ -335,7 +336,7 @@ public class Controller {
 			// Displays courses
 			view.displayCourses(requirements);
 			// Stores user input
-			selected = userInput.nextInt();
+			selected = validInt();;
 		}
 				
 		// If user wants to return to admin options, return
@@ -364,7 +365,7 @@ public class Controller {
 		view.trainStaffOptions(); // only display if staff members != 0
 		
 		// Stores user input
-		int selected = userInput.nextInt();
+		int selected = validInt();;
 		
 		// Loop until user selects valid input
 		while(selected < 0 || selected > untrainedStaff.size()) {
@@ -376,7 +377,7 @@ public class Controller {
 			// Asks user to select a staff member to train
 			view.trainStaffOptions();
 			// Stores user input
-			selected = userInput.nextInt();			
+			selected = validInt();;			
 		}
 		
 		// If user selects to exit return false
@@ -399,7 +400,7 @@ public class Controller {
 		// display course options
 		view.displayAdminCourseOptions();
 		// Stores user input
-		int selected = userInput.nextInt();
+		int selected = validInt();;
 		
 		// Loop until user selects valid input
 		while(selected < 0 || selected > 2) {
@@ -409,7 +410,7 @@ public class Controller {
 			// Displays courses
 			view.displayCourse(course);
 			// Stores user input
-			selected = userInput.nextInt();			
+			selected = validInt();;			
 		}
 		
 		// Responds to user input
@@ -447,7 +448,7 @@ public class Controller {
 		view.displayStaff(availableStaff);
 		
 		// Stores user input
-		int selected = userInput.nextInt();
+		int selected = validInt();;
 		
 		// Loops until valid input is selected
 		while(selected < 0 || selected > availableStaff.size()) {
@@ -457,7 +458,7 @@ public class Controller {
 			// Displays courses
 			view.displayStaff(availableStaff);
 			// Stores user input
-			selected = userInput.nextInt();
+			selected = validInt();;
 		}
 		
 		// If user selects to exit return false
@@ -483,7 +484,7 @@ public class Controller {
 		view.displayStaff(assignedStaff);
 		
 		// Stores user input
-		int selected = userInput.nextInt();
+		int selected = validInt();;
 		
 		// Loops until user enters valid input
 		while(selected < 0 || selected > assignedStaff.size()) {
@@ -493,7 +494,7 @@ public class Controller {
 			// Displays courses
 			view.displayStaff(assignedStaff);
 			// Stores user input
-			selected = userInput.nextInt();
+			selected = validInt();;
 		}
 		
 		// If user selects to exit return false
@@ -518,7 +519,7 @@ public class Controller {
 		view.displayCourses(filledCourses);
 		
 		// Stores user input
-		int selected = userInput.nextInt();
+		int selected = validInt();;
 		
 		// Loops until user enters valid input
 		while(selected < 0 || selected > filledCourses.size()) {
@@ -528,7 +529,7 @@ public class Controller {
 			// Asks user to approve a course requirement
 			view.displayCourses(filledCourses);						
 			// Stores user input
-			selected = userInput.nextInt();
+			selected = validInt();;
 		}
 				
 		// If user selects to exit return false
@@ -553,7 +554,7 @@ public class Controller {
 		view.displayCourses(unapprovedCourses);
 		
 		// Stores user input
-		int selected = userInput.nextInt();
+		int selected = validInt();;
 		
 		// Loops until user enters valid input
 		while(selected < 0 || selected > 1) {
@@ -563,7 +564,7 @@ public class Controller {
 			// Asks user to approve a course requirement
 			view.displayCourses(unapprovedCourses);						
 			// Stores user input
-			selected = userInput.nextInt();
+			selected = validInt();;
 		}
 				
 		// If user selects to exit return false
@@ -583,5 +584,22 @@ public class Controller {
 		
 		// Writes state to file
 		model.writeToFile();
+	}
+	
+	/**
+	 * Checks if input is an int
+	 * @return int input
+	 */
+	private static int validInt() {
+		
+		// If user does not input an int show invalid input
+		while(!userInput.hasNextInt()) {
+			
+			
+			view.incorrectInput();
+			userInput.next();
+		}
+		
+		return userInput.nextInt();
 	}
 }
