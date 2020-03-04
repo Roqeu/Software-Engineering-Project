@@ -11,6 +11,7 @@ import java.util.ArrayList;
  *  public ArrayList<Course> findApprovedCourses()
  *  public ArrayList<Course> findUnapprovedCourses()
  *  public ArrayList<Course> findFullCourses()
+ *  public ArrayList<Staff> findCourseStaff(Course course, ListOfStaff staffList)
  *  public void addStaffToCourse(Course course, Staff staff)
  *  public void removeStaffFromCourse(Course course, Staff staff)
  *  public boolean assignCourseRequirements(Course course, int req)
