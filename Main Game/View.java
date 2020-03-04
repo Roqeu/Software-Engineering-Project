@@ -1,6 +1,33 @@
 
 import java.util.ArrayList;
 
+/**
+ * This is the view class for our application. It takes input from the controller and displays the menu options or content of the input.
+ * @author John Desbois 2475229D
+ * 
+ * Public Methods: 
+ * public void selectUser()
+ * public void displayCourses(ArrayList<Course> courses)
+ * public void incorrectInput() 
+ * public void exit()
+ * public void newLine()
+ * public void displayCourse(Course course)
+ * public void courseDirectorOptions()
+ * public void createCourse()
+ * public void askRequirement()
+ * public void adminOptions()
+ * public void displayStaff(ArrayList<Staff> staffList) 
+ * public void staffProfile(Staff staff)
+ * public void displayAdminCourseOptions()
+ * public void createStaff()
+ * public void trainStaffOptions()
+ * public void selectStaff()
+ * public void courseFull()
+ * public void pttDirectorOptions()
+ * public void displayPTTDirectorCourseOptions(Course course)
+ * 
+ */
+
 public class View {
     /**
      * Contstructor
