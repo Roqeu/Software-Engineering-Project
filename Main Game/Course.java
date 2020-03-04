@@ -1,3 +1,4 @@
+package MainLogic;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,12 +34,12 @@ public class Course {
 	 */
 	
 	public Course(int ID, String name, boolean approved, int requiredStaff, int assignedStaff, List<Integer> staffID) {
-		this.ID = ID;
-		this.name = name;
-		this.approved = approved;
-		this.requiredStaff = requiredStaff;
-		this.assignedStaff = assignedStaff;
-		this.staffID = staffID;
+		this.ID = ID; //course ID
+		this.name = name; //course name
+		this.approved = approved; //course approved
+		this.requiredStaff = requiredStaff; //staff required for course
+		this.assignedStaff = assignedStaff; //staff assigned to course
+		this.staffID = staffID; //staff ID
 	}
 	
 	/**
@@ -46,10 +47,10 @@ public class Course {
 	 */
 	
 	public Course(int ID, String name, int requiredStaff) { 
-		this.ID = ID;
-		this.name = name;
-		this.requiredStaff = requiredStaff;
-		this.assignedStaff = 0;
+		this.ID = ID; //course ID
+		this.name = name; //course name
+		this.requiredStaff = requiredStaff; //staff required for course
+		this.assignedStaff = 0; // staff assigned to course
 		this.staffID = new ArrayList<Integer>(); //ArrayList of staffIDs created when Course object created
 		
 	}
@@ -74,7 +75,6 @@ public class Course {
 	
 	public void addStaff(Staff staff) {
 		this.staffID.add(staff.getID());
-		assignedStaff++;
 		
 	}
 	
@@ -94,7 +94,6 @@ public class Course {
 			}
 		}
 		
-		assignedStaff--;
 	}
 	
 	/**
@@ -138,7 +137,7 @@ public class Course {
 	 * @return list of staff ID's
 	 */
 	
-	private List<Integer> getStaffID() {
+	public List<Integer> getStaffID() {
 		return staffID;
 	}
 	
@@ -147,7 +146,7 @@ public class Course {
 	 * @return required staff
 	 */
 	
-	private int getRequiredStaff() {
+	public int getRequiredStaff() {
 		return requiredStaff;
 	}
 	
@@ -156,7 +155,7 @@ public class Course {
 	 * @return assigned staff
 	 */
 	
-	private int getAssignedStaff() {
+	public int getAssignedStaff() {
 		return assignedStaff;
 	}
 	
@@ -167,7 +166,6 @@ public class Course {
 	 */
 
 	
-<<<<<<< HEAD
 	public void setRequirements(int requirements) {
 		this.requiredStaff = requirements;
 		
@@ -178,8 +176,6 @@ public class Course {
 	 * @return required staff
 	 */
 	
-=======
->>>>>>> 0b3f13a866f75c50ef931f61d53ab45c4fbd598c
 	public int getRequirements() {
 		return this.requiredStaff;
 		
