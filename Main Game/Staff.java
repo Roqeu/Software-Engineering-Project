@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-package MainLogic;
-=======
-
->>>>>>> ffea3152c10f5d3b9d92c223d861773e4b332ba0
 
 /**
  * Class 
