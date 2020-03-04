@@ -17,11 +17,11 @@ import java.util.Scanner;
 public class Controller {
 
 	// Stores model
-	private static Model model;
+	private Model model;
 	// Stores view
-	private static View view;
+	private View view;
 	// Initialises Scanner to listen for input
-	private static Scanner userInput = new Scanner(System.in);
+	private Scanner userInput = new Scanner(System.in);
 	
 	/**
 	 * Constructor
@@ -210,7 +210,7 @@ public class Controller {
 	/**
 	 * Shows courses without requirements and allows user to add requirements
 	 */
-	private static void unapprovedCourses() {
+	private void unapprovedCourses() {
 		
 		// Stores courses without requirements
 		ArrayList<Course> courses = model.findUnapprovedCourses();
@@ -242,7 +242,7 @@ public class Controller {
 	/**
 	 * Allows course director to assign requirements to a given course
 	 */
-	private static void assignRequirements(Course course) {
+	private void assignRequirements(Course course) {
 		
 		// Displays assign requirements message
 		view.askRequirement();
@@ -267,7 +267,7 @@ public class Controller {
 	/**
 	 * Allows Course Director to create new courses
 	 */
-	private static void createCourse() {
+	private void createCourse() {
 		
 		// Asks user to input a course name
 		view.createCourse();
@@ -285,7 +285,7 @@ public class Controller {
 	/**
 	 * Sets up staff view
 	 */
-	private static void staffViewMenu() {
+	private void staffViewMenu() {
 		
 		// Displays staff view and allows exit
 		view.displayStaff(model.returnStaffList());
@@ -305,7 +305,7 @@ public class Controller {
 	/**
 	 * Allows administrator to create new staff members
 	 */
-	private static void createNewStaffMember() {
+	private void createNewStaffMember() {
 		
 		view.createStaff();
 		
@@ -320,7 +320,7 @@ public class Controller {
 	 * Allows admin to view course requirements and add or remove staff
 	 * @param ArrayList<Course>
 	 */
-	private static void fillRequirements(ArrayList<Course> requirements) {
+	private void fillRequirements(ArrayList<Course> requirements) {
 		
 		// Displays list of courses
 		view.displayCourses(requirements);
@@ -354,7 +354,7 @@ public class Controller {
 	/**
 	 * Allows admin to assign staff to training
 	 */
-	private static void train() {
+	private void train() {
 		
 		// Stores untrained staff
 		ArrayList<Staff> untrainedStaff = model.UntrainedStaff();
@@ -393,7 +393,7 @@ public class Controller {
 	 * Displays the course requirements and add/remove staff options
 	 * @param Course
 	 */
-	private static void courseOptions(Course course) {
+	private void courseOptions(Course course) {
 		
 		// Displays course options
 		view.displayCourse(course);
@@ -439,7 +439,7 @@ public class Controller {
 	/**
 	 * Allows administrator to assign staff to a course
 	 */
-	private static void assignStaff(Course course) {
+	private void assignStaff(Course course) {
 		
 		// Stores available staff
 		ArrayList<Staff> availableStaff = model.AvailableStaff();
@@ -475,7 +475,7 @@ public class Controller {
 	/**
 	 * Allows administrator to remove staff member from course
 	 */
-	private static void removeStaff(Course course) {
+	private void removeStaff(Course course) {
 		
 		// Stores staff assigned to course
 		ArrayList<Staff> assignedStaff = model.findCourseStaff(course);
@@ -510,7 +510,7 @@ public class Controller {
 	/**
 	 * Allows the PTT Director to approve courses
 	 */
-	private static void approveCourse() {
+	private void approveCourse() {
 		
 		// Gets approved courses
 		ArrayList<Course> filledCourses = model.findFullCourses();
@@ -545,7 +545,7 @@ public class Controller {
 	/**
 	 * Allows PTT Director to view approved courses and unapprove if needed
 	 */
-	private static void unapproveCourse() {
+	private void unapproveCourse() {
 		
 		// Gets approved courses
 		ArrayList<Course> unapprovedCourses = model.findApprovedCourses();
@@ -590,7 +590,7 @@ public class Controller {
 	 * Checks if input is an int
 	 * @return int input
 	 */
-	private static int validInt() {
+	private int validInt() {
 		
 		// If user does not input an int show invalid input
 		while(!userInput.hasNextInt()) {
