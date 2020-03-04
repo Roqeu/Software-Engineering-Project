@@ -157,7 +157,7 @@ public class ListOfCourses {
 	public void addStaffToCourse(Course course, Staff staff) {
 		
 		course.addStaff(staff);
-		
+		staff.setAvailable(false);
 	}
 	
 	/**

@@ -81,7 +81,7 @@ public class Controller {
 		// If 1 enter unapproved course menu (allows change of requirement)
 		case 1:
 			
-			unapprovedCourses();
+			unapporvedCourses();
 			break;
 		// If 2 create courses
 		case 2:
@@ -198,7 +198,7 @@ public class Controller {
 	/**
 	 * Shows courses without requirements and allows user to add requirements
 	 */
-	private static void unapprovedCourses() {
+	private static void unapporvedCourses() {
 		
 		// Stores courses without requirements
 		ArrayList<Course> courses = model.findUnapprovedCourses();
@@ -245,7 +245,11 @@ public class Controller {
 		}
 		
 		// Assigns requirement
-		model.assignCourseRequirements(course, selected);
+		if(!model.assignCourseRequirements(course, selected)) {
+			
+			// Tells user assignment failed due to course being full
+			view.courseFull();
+		}
 	}
 	
 	/**
@@ -404,7 +408,14 @@ public class Controller {
 			return;
 		// If 1 enter assign staff menu
 		case 1:
-			assignStaff(course);
+			// Checks if course is full
+			if(course.checkFull()) {
+				 // If course is full don't allow admin to add staff
+				view.courseFull();
+			} else {
+				// Assigns staff to course
+				assignStaff(course);
+			}
 			break;
 		// If 2 enter remove staff menu
 		case 2:
@@ -454,22 +465,22 @@ public class Controller {
 	 */
 	private static void removeStaff(Course course) {
 		
-		// Stores staff associated with this course
-		ArrayList<Staff> unavailableStaff = model.UnavailableStaff();
+		// Stores staff assigned to course
+		ArrayList<Staff> assignedStaff = model.findCourseStaff(course);
 		
 		// Displays staff
-		view.displayStaff(unavailableStaff);
+		view.displayStaff(assignedStaff);
 		
 		// Stores user input
 		int selected = userInput.nextInt();
 		
 		// Loops until user enters valid input
-		while(selected < 0 || selected > unavailableStaff.size()) {
+		while(selected < 0 || selected > assignedStaff.size()) {
 			
 			// Displays wrong input message
 			view.incorrectInput();
 			// Displays courses
-			view.displayStaff(unavailableStaff);
+			view.displayStaff(assignedStaff);
 			// Stores user input
 			selected = userInput.nextInt();
 		}
@@ -481,7 +492,7 @@ public class Controller {
 		}
 		
 		// Remove selected staff from selected course
-		model.removeStaffFromCourse(course, unavailableStaff.get(selected - 1));
+		model.removeStaffFromCourse(course, assignedStaff.get(selected - 1));
 	}
 	
 	/**
@@ -499,7 +510,7 @@ public class Controller {
 		int selected = userInput.nextInt();
 		
 		// Loops until user enters valid input
-		while(selected < 0 || selected > 1) {
+		while(selected < 0 || selected > filledCourses.size()) {
 					
 			// Displays wrong input message
 			view.incorrectInput();
