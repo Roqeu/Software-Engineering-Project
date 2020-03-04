@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *  public ArrayList<Course> findFullCourses()
  *  public void addStaffToCourse(Course course, Staff staff)
  *  public void removeStaffFromCourse(Course course, Staff staff)
- *  public void assignCourseRequirements(Course course, int req)
+ *  public boolean assignCourseRequirements(Course course, int req)
  *  public void giveRequestApproval(Course course, boolean approval)
  *  public void train(Staff staff)
  *  public ArrayList<Course> getCourseList()
@@ -69,7 +69,8 @@ public class ListOfCourses {
 			nextID = mostRecent.getID() + 1;
 		}
 		else {
-			nextID = 0;
+			// start from 1
+			nextID = 1;
 		}
 		
 		// Add new course to list
@@ -112,6 +113,7 @@ public class ListOfCourses {
 	
 	/**
 	 * Method to return ArrayList of full courses
+	 * that are not approved
 	 * @return ArrayList of full courses
 	 */
 	public ArrayList<Course> findFullCourses(){
@@ -119,12 +121,31 @@ public class ListOfCourses {
 		ArrayList<Course> fullCourses = new ArrayList<Course>();
 		
 		for(Course course : this.courseList) {
-			if(course.checkFull()) {
+			if(course.checkFull() && (!course.isApproved())) {
 				fullCourses.add(course);
 			}
 		}
 		
 		return fullCourses;
+	}
+	
+	/**
+	 * Method to return ArrayList of staff on a given course
+	 * @param course
+	 * @param staffList global stafflist
+	 * @return
+	 */
+	public ArrayList<Staff> findCourseStaff(Course course, ListOfStaff staffList){
+		
+		ArrayList<Staff> courseStaff = new ArrayList<Staff>();
+		
+		for(int id : course.getStaffID()) {
+
+			courseStaff.add(staffList.find(id));
+
+		}
+		
+		return courseStaff;
 	}
 	
 	/**
@@ -154,9 +175,9 @@ public class ListOfCourses {
 	 * @param course
 	 * @param req number of staff required
 	 */
-	public void assignCourseRequirements(Course course, int req) {
+	public boolean assignCourseRequirements(Course course, int req) {
 		
-		course.changeRequirements(req);
+		return course.changeRequirements(req);
 		
 	}
 	
