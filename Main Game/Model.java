@@ -19,6 +19,7 @@ import java.util.ArrayList;
  * 	public ArrayList<Course> findApprovedCourses()
  * 	public ArrayList<Course> findUnapprovedCourses()
  * 	public ArrayList<Course> findFullCourses()
+ * 	public ArrayList<Staff> findCourseStaff(Course course)
  * 	public void addStaffToCourse(Course course, Staff staff)
  * 	public void removeStaffFromCourse(Course course, Staff staff)
  * 	public boolean assignCourseRequirements(Course course, int req)
@@ -179,6 +180,16 @@ public class Model {
 	 */
 	public ArrayList<Course> findFullCourses(){
 		return this.courseList.findFullCourses();
+	}
+	
+	/**
+	 * Method to return ArrayList of staff on a given course
+	 * @param course
+	 * @return
+	 */
+	public ArrayList<Staff> findCourseStaff(Course course){
+		
+		return this.courseList.findCourseStaff(course, this.staffList);
 	}
 	
 	/**
