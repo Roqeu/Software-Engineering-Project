@@ -57,39 +57,43 @@ public class ReadFile {
 		{
 			file = new Scanner(new File(path));
 			
+			
 		} catch (FileNotFoundException e)
 		{
 			e.printStackTrace();
 		}
 		ArrayList<Course> tempCourseList = new ArrayList<Course>();
 		
-		while (file.hasNext()) {
-
-			int id = Integer.parseInt(file.next());
-			//(TEST) System.out.println(id);
-			String name = file.next();
-			//(TEST) System.out.println(name);
-			boolean approved = Boolean.parseBoolean(file.next());
-			//(TEST) System.out.println(approved);
-			int requiredStaff = Integer.parseInt(file.next());
-			//(TEST) System.out.println(requiredStaff);
-			int assignedStaff = Integer.parseInt(file.next());
-			//(TEST) System.out.println(assignedStaff);
-
-			ArrayList<Integer> staffId = new ArrayList<Integer>();
-			// once defined size elements are read, a second while loop runs through staff id associated with each course
-			// these are variable in length as such hasNextInt() condition ensures all will be read and added to courses
-			while (file.hasNextInt()) {
+		while (file.hasNextLine()) {
+			String[] current = file.nextLine().split(" ");
+				int id = Integer.parseInt(current[0]);
+				// (TEST)System.out.println(id);
+				String name = current[1];
+				// (TEST)System.out.println(name);
+				boolean approved = Boolean.parseBoolean(current[2]);
+				// (TEST)System.out.println(approved);
+				int requiredStaff = Integer.parseInt(current[3]);
+				// (TEST)System.out.println(requiredStaff);
+				int assignedStaff = Integer.parseInt(current[4]);
+				// (TEST) System.out.println(assignedStaff);
 				
-				staffId.add(file.nextInt());
+				ArrayList<Integer> staffId = new ArrayList<Integer>();
+				// once defined size elements are read, a second while loop runs through staff id associated with each course
+      			// these are variable in length as such hasNextInt() condition ensures all will be read and added to courses
+				for (int i= 5; i<current.length; i++) {
+					staffId.add(Integer.parseInt(current[i]));
+				}
+				tempCourseList.add(new Course(id, name, approved, requiredStaff, assignedStaff, staffId));
+				// (TEST) System.out.println(staffId);
 			}
-			tempCourseList.add(new Course(id, name, approved, requiredStaff, assignedStaff, staffId));
-			//(TEST) System.out.println(staffId);
-			file.hasNextLine();
-		}
+	
 		file.close();
-		//(TEST) System.out.println(tempCourseList);
+		
 		return tempCourseList;
+		}
+		
 	}
+		
+	
 
-}
+
