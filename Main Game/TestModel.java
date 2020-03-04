@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 public class TestModel {
 	public static void main(String[] args) {
@@ -35,14 +35,14 @@ public class TestModel {
 		 * Find a staff members to add
 		 */
 		
-		Staff staffToAdd1 = model.findStaff(0);
-		Staff staffToAdd2 = model.findStaff(2);
+		Staff staffToAdd1 = model.findStaff(1);
+		Staff staffToAdd2 = model.findStaff(3);
 		
 		/*
 		 * Find a course
 		 */
 		
-		Course courseToBeAddedTo = model.findCourse(0);
+		Course courseToBeAddedTo = model.findCourse(1);
 		
 		/*
 		 * Add staff to course
@@ -59,6 +59,13 @@ public class TestModel {
 			System.out.println(ID);
 		}
 		
+		ArrayList<Staff> staffNames = model.findCourseStaff(model.findCourse(1));
+		
+		System.out.println("\nFinding staff objects from course StaffID list:");
+		for(Staff staff : staffNames) {
+			System.out.println(staff);
+		}
+		
 		/*
 		 * Remove staff member 2
 		 */
@@ -69,9 +76,6 @@ public class TestModel {
 		/*
 		 * Check staff in course after removal
 		 */
-		
-		
-		
 		System.out.println("\nStaff in course after removal:");
 		for(int ID : courseToBeAddedTo.getStaffID()) {
 			System.out.println(ID);

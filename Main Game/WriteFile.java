@@ -19,8 +19,9 @@ public class WriteFile {
 	public void staffToFile(String destination, ArrayList<Staff> tempStaffArray) {
 		try {
 			FileWriter writer = new FileWriter(destination); 
-			for(Staff all: tempStaffArray) {
-			  writer.write(all + System.lineSeparator());
+			for(Staff member: tempStaffArray) {
+				writer.write((" " + member.getName() + " " + member.getID() + " " + 
+			    member.isAvailable() + " " + member.isTrained()) + System.lineSeparator());
 			}
 			writer.close();
 		} catch (IOException e) {
@@ -37,8 +38,9 @@ public class WriteFile {
 		
 		try {
 			FileWriter writer = new FileWriter(destination); 
-			for(Course all: tempCourseArray) {
-			  writer.write(all + System.lineSeparator());
+			for(Course course: tempCourseArray) {
+				writer.write((" " + course.getID() + " " + course.getName() + " " + course.isApproved() + " " + 
+			    course.getRequiredStaff() + " " + course.getAssignedStaff() + " " + course.getStaffID()) + System.lineSeparator());
 			}
 			writer.close();
 		} catch (IOException e) {
