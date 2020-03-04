@@ -198,6 +198,7 @@ public class ListOfCourses {
 	public void train(Staff staff) {
 		
 		staff.setTrained(true);
+		staff.setAvailable(true);
 		
 	}
 	
