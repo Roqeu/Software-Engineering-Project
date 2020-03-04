@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * 
  * Public Methods: 
  * public void selectUser()
- * public void displayCourse(ArrayList<Course> courses)
+ * public void displayCourses(ArrayList<Course> courses)
  * public void incorrectInput() 
  * public void exit()
  * public void newLine()
@@ -15,6 +15,7 @@ import java.util.ArrayList;
  * public void courseDirectorOptions()
  * public void createCourse()
  * public void askRequirement()
+ * public void adminOptions()
  * public void displayStaff(ArrayList<Staff> staffList) 
  * public void staffProfile(Staff staff)
  * public void displayAdminCourseOptions()
