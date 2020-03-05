@@ -372,8 +372,11 @@ public class Controller {
 		
 		// Displays untrained staff
 		view.displayStaff(untrainedStaff);
-		// Asks user to select a staff member to train
-		view.trainStaffOptions(); // only display if staff members != 0
+		// Asks user to select a staff member to train if there are staff that need training
+		if(untrainedStaff.size() != 0) {
+		
+			view.trainStaffOptions();
+		}
 		
 		// Stores user input
 		int selected = validInt();;
@@ -385,8 +388,13 @@ public class Controller {
 			view.incorrectInput();
 			// Displays untrained staff
 			view.displayStaff(untrainedStaff);
-			// Asks user to select a staff member to train
-			view.trainStaffOptions();
+			
+			// Asks user to select a staff member to train if there are staff that need training
+			if(untrainedStaff.size() != 0) {
+			
+				view.trainStaffOptions();
+			}
+			
 			// Stores user input
 			selected = validInt();;			
 		}
