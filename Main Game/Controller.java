@@ -539,7 +539,7 @@ public class Controller {
 		}
 			
 		// Requirement approved
-		pttCourseDirectorOption(filledCourses.get(selected - 1));
+		pttDirectorOption(filledCourses.get(selected - 1));
 	}
 	
 	/**
@@ -575,7 +575,7 @@ public class Controller {
 		}
 				
 		// Unapproves Course
-		pttCourseDirectorOption(unapprovedCourses.get(selected - 1));
+		pttDirectorOption(unapprovedCourses.get(selected - 1));
 	}
 	
 	/**
