@@ -577,14 +577,14 @@ public class Controller {
 		int selected = validInt();;
 		
 		// Loops until user enters valid input
-		while(selected < 0 || selected > 1) {
+		while(selected < 0 || selected > unapprovedCourses.size()) {
 					
 			// Displays wrong input message
 			view.incorrectInput();
 			// Asks user to approve a course requirement
 			view.displayCourses(unapprovedCourses);						
 			// Stores user input
-			selected = validInt();;
+			selected = validInt();
 		}
 				
 		// If user selects to exit return false
