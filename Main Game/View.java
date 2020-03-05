@@ -187,7 +187,7 @@ public class View {
      * Method to tell user that cannot assign more users than required
      */
     public void incorrectRequirement() {
-        System.out.println("Requirement cannot be more than currently assigned staff!");
+        System.out.println("Requirement cannot be less than currently assigned staff!");
     }
     /**
      * Method to display the menu options for the PTT Director

@@ -257,10 +257,21 @@ public class Controller {
 		}
 		
 		// Assigns requirement
-		if(!model.assignCourseRequirements(course, selected)) {
+		while(!model.assignCourseRequirements(course, selected)) {
 			
-			// Tells user assignment failed due to course being full
-			view.courseFull();
+			// Tells user assignment failed due to requirement < assigned staff
+			view.incorrectRequirement();
+			// Displays assign requirements message
+			view.askRequirement();
+			
+			// Stores user input
+			selected = validInt();;
+			
+			// If user chooses to exit, return false
+			if(selected == 0) {
+				
+				return;
+			}
 		}
 	}
 	
