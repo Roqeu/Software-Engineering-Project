@@ -183,7 +183,12 @@ public class View {
     public void courseFull() {
         System.out.println("Unable to assign staff, course is full!");
     }
-
+    /**
+     * Method to tell user that cannot assign more users than required
+     */
+    public void incorrectRequirement() {
+        System.out.println("Requirement cannot be more than currently assigned staff!");
+    }
     /**
      * Method to display the menu options for the PTT Director
      */
