@@ -582,7 +582,7 @@ public class Controller {
 	 * Displays course details and allows PTT Director to approve or unapprove
 	 * @param Course
 	 */
-	private void pttCourseDirectorOption(Course course) {
+	private void pttDirectorOption(Course course) {
 		
 		// Diaplsyas course
 		view.displayCourse(course);
