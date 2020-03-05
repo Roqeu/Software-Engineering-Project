@@ -539,7 +539,7 @@ public class Controller {
 		}
 			
 		// Requirement approved
-		model.giveRequestApproval(filledCourses.get(selected - 1), true);
+		pttCourseDirectorOption(filledCourses.get(selected - 1));
 	}
 	
 	/**
@@ -552,6 +552,7 @@ public class Controller {
 		
 		// Shows approved courses and asks for user input
 		view.displayCourses(unapprovedCourses);
+
 		
 		// Stores user input
 		int selected = validInt();;
@@ -574,7 +575,44 @@ public class Controller {
 		}
 				
 		// Unapproves Course
-		model.giveRequestApproval(unapprovedCourses.get(selected - 1), false);
+		pttCourseDirectorOption(unapprovedCourses.get(selected - 1));
+	}
+	
+	/**
+	 * Displays course details and allows PTT Director to approve or unapprove
+	 * @param Course
+	 */
+	private void pttCourseDirectorOption(Course course) {
+		
+		// Diaplsyas course
+		view.displayCourse(course);
+		// Displays course options
+		view.displayPTTDirectorCourseOptions(course);
+		
+		// Stores user input
+		int selected = validInt();;
+		
+		// Loops until user enters valid input
+		while(selected < 0 || selected > 1) {
+					
+			// Displays wrong input message
+			view.incorrectInput();
+			// Asks user to approve a course requirement
+			view.displayCourse(course);	
+			// Displays course options
+			view.displayPTTDirectorCourseOptions(course);
+			// Stores user input
+			selected = validInt();;
+		}
+		
+		// If user selects to exit return false
+		if(selected == 0) {
+					
+			return;
+		}
+		
+		// Approves or unapproves Course
+		model.giveRequestApproval(course, !course.isApproved());
 	}
 	
 	/**
