@@ -12,12 +12,14 @@ import java.util.ArrayList;
  *  public ArrayList<Course> findUnapprovedCourses()
  *  public ArrayList<Course> findFullCourses()
  *  public ArrayList<Staff> findCourseStaff(Course course, ListOfStaff staffList)
+ *  public ArrayList<Course> findFullCourses()
  *  public void addStaffToCourse(Course course, Staff staff)
  *  public void removeStaffFromCourse(Course course, Staff staff)
  *  public boolean assignCourseRequirements(Course course, int req)
  *  public void giveRequestApproval(Course course, boolean approval)
  *  public void train(Staff staff)
  *  public ArrayList<Course> getCourseList()
+ *  public void setCourseList(ArrayList<Course> courseList)
  */
 public class ListOfCourses {
 	
@@ -210,7 +212,11 @@ public class ListOfCourses {
 	public ArrayList<Course> getCourseList() {
 		return courseList;
 	}
-
+	
+	/**
+	 * Setter for courseList
+	 * @param courseList
+	 */
 	public void setCourseList(ArrayList<Course> courseList) {
 		this.courseList = courseList;
 	}

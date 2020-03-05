@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * 	public ArrayList<Staff> findUntrainedStaff()
  * 	public ArrayList<Staff> findTrainedStaff()
  * 	public ArrayList<Staff> getStaffList()
+ * 	public void setStaffList(ArrayList<Staff> staffList)
  *
  */
 public class ListOfStaff {
@@ -156,7 +157,11 @@ public class ListOfStaff {
 	public ArrayList<Staff> getStaffList() {
 		return staffList;
 	}
-
+	
+	/**
+	 * Setter for staffList
+	 * @param staffList
+	 */
 	public void setStaffList(ArrayList<Staff> staffList) {
 		this.staffList = staffList;
 	}
