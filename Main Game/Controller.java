@@ -539,7 +539,7 @@ public class Controller {
 		}
 			
 		// Requirement approved
-		pttCourseDirectorOption(filledCourses.get(selected - 1));
+		pttDirectorOption(filledCourses.get(selected - 1));
 	}
 	
 	/**
@@ -575,14 +575,14 @@ public class Controller {
 		}
 				
 		// Unapproves Course
-		pttCourseDirectorOption(unapprovedCourses.get(selected - 1));
+		pttDirectorOption(unapprovedCourses.get(selected - 1));
 	}
 	
 	/**
 	 * Displays course details and allows PTT Director to approve or unapprove
 	 * @param Course
 	 */
-	private void pttCourseDirectorOption(Course course) {
+	private void pttDirectorOption(Course course) {
 		
 		// Diaplsyas course
 		view.displayCourse(course);
